@@ -197,8 +197,8 @@
 |[mrb_data_check_get_ptr()](#mrb_data_check_get_ptr)|||
 |[mrb_debug_get_filename()](#mrb_debug_get_filename)|デバッグ実行中のソースファイル名を取得する。||
 |[mrb_debug_get_line()](#mrb_debug_get_line)|デバッグ実行中のソースファイルの行番号を取得する。||
-|mrb_irep_debug_info *mrb_debug_info_alloc|[mrb_irep_debug_info *mrb_debug_info_alloc()](#mrb_irep_debug_info *mrb_debug_info_alloc)|デバッグ情報を生成する。||
-|mrb_irep_debug_info_file *mrb_debug_info_append_file|[mrb_irep_debug_info_file *mrb_debug_info_append_file()](#mrb_irep_debug_info_file *mrb_debug_info_append_file)|||
+|[mrb_debug_info_alloc()](#mrb_debug_info_alloc)|デバッグ情報を生成する。||
+|[mrb_debug_info_append_file()](#mrb_debug_info_append_file)|||
 |[mrb_debug_info_free()](#mrb_debug_info_free)|デバッグ情報を解放する。||
 |[mrb_load_irep_file()](#mrb_load_irep_file)|||
 |[mrb_load_irep_file_cxt()](#mrb_load_irep_file_cxt)|mrubyバイナリファイルを実行する。||
@@ -1879,7 +1879,7 @@ MRB_API int32_t mrb_debug_get_line(mrb_state *mrb, mrb_irep *irep, ptrdiff_t pc)
 
 デバッグ実行中のソースファイルの行番号を取得する。
 
-## mrb_irep_debug_info *mrb_debug_info_alloc
+## mrb_debug_info_alloc
 
 ```c
 MRB_API mrb_irep_debug_info *mrb_debug_info_alloc(mrb_state *mrb, mrb_irep *irep);
@@ -1887,7 +1887,7 @@ MRB_API mrb_irep_debug_info *mrb_debug_info_alloc(mrb_state *mrb, mrb_irep *irep
 
 デバッグ情報を生成する。
 
-## mrb_irep_debug_info_file *mrb_debug_info_append_file
+## mrb_debug_info_append_file
 
 ```c
 MRB_API mrb_irep_debug_info_file *mrb_debug_info_append_file(
