@@ -14,12 +14,6 @@
 
 ## 2.2. 定義されているマクロ
 
-## 2.3. C APIで使用する構造体
-
-### 2.3.1. mrb_state
-
-### 2.3.2. mrb_value
-
-### ...
+## [2.3. C APIで使用する構造体](mruby-c-struct.md)
 
 ## [2.4. C API](mruby-c-apis.md)
