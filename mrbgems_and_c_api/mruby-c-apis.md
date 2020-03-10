@@ -59,8 +59,8 @@
 |[mrb_str_new_cstr()](#mrb_str_new_cstr)|Stringオブジェクトを生成する。||
 |[mrb_str_new_static()](#mrb_str_new_static)|Stringオブジェクトを生成する。||
 |[mrb_obj_freeze()](#mrb_obj_freeze)|オブジェクトをfreezeする。||
-|mrb_utf8_from_locale|[mrb_utf8_from_locale()](#mrb_utf8_from_locale)||_WIN32用|
-|mrb_locale_from_utf8|[mrb_locale_from_utf8()](#mrb_locale_from_utf8)||_WIN32用|
+|[mrb_utf8_from_locale()](#mrb_utf8_from_locale)||_WIN32用|
+|[mrb_locale_from_utf8()](#mrb_locale_from_utf8)||_WIN32用|
 |[mrb_open()](#mrb_open)|mrb_stateを生成する。||
 |[mrb_open_allocf()](#mrb_open_allocf)|mrb_stateを生成する。（メモリ管理指定）||
 |[mrb_open_core()](#mrb_open_core)|mrubyコアのみのmrb_stateを生成する。||
