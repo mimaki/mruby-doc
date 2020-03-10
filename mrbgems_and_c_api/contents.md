@@ -10,7 +10,7 @@
 
 # 2. mruby C API
 
-## 2.1. [C API概要](mruby-c-api-outline.md)
+## [2.1. C API概要](mruby-c-api-outline.md)
 
 ## [2.2. 定義されているマクロ](mruby-c-api-macros.md)
 
