@@ -325,7 +325,21 @@
 MRB_API struct RClass *mrb_define_class(mrb_state *mrb, const char *name, struct RClass *super);
 ```
 
-クラスを定義する。
+クラスを定義します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|name|定義するクラス名を渡します。||
+|super|親クラスのインスタンス（`struct RClass`のポインタ）を指定します。|特定の親クラスを指定しない場合は`Object`クラスのインスタンス`mrb->object_class`を指定します。|
+
+### 戻り値
+
+定義したクラスのインスタンス（`struct RClass`のポインタ）が返されます。
+
+---
 
 ## mrb_define_module
 
@@ -333,7 +347,20 @@ MRB_API struct RClass *mrb_define_class(mrb_state *mrb, const char *name, struct
 MRB_API struct RClass *mrb_define_module(mrb_state *mrb, const char *name);
 ```
 
-モジュールを定義する。
+モジュールを定義します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|name|定義するモジュール名を渡します。||
+
+### 戻り値
+
+定義したモジュールのインスタンス（`struct RClass`のポインタ）が返されます。
+
+---
 
 ## mrb_singleton_class
 
@@ -343,13 +370,36 @@ MRB_API mrb_value mrb_singleton_class(mrb_state *mrb, mrb_value val);
 
 レシーバの特異クラスを返します。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|val|特異クラスを取得するオブジェクトを渡します。||
+
+### 戻り値
+
+特異クラスのオブジェクトが返されます。
+
+---
+
 ## mrb_include_module
 
 ```c
 MRB_API void mrb_include_module(mrb_state *mrb, struct RClass *cla, struct RClass *included);
 ```
 
-クラスまたはモジュールにモジュールをincludeする。
+クラスまたはモジュールにモジュールをincludeします。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|cla|include先のクラス・モジュールのインスタンス（`struct RClass`のポインタ）を渡します。||
+|included|includeするモジュールのインスタンス（`struct RClass`のポインタ）を渡します。||
+
+---
 
 ## mrb_prepend_module
 
@@ -357,7 +407,17 @@ MRB_API void mrb_include_module(mrb_state *mrb, struct RClass *cla, struct RClas
 MRB_API void mrb_prepend_module(mrb_state *mrb, struct RClass *cla, struct RClass *prepended);
 ```
 
-クラスまたはモジュールにモジュールをprependする。
+クラスまたはモジュールにモジュールをprependします。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|cla|prepend先のクラス・モジュールのインスタンス（`struct RClass`のポインタ）を渡します。||
+|prepended|prependするモジュールのインスタンス（`struct RClass`のポインタ）を渡します。||
+
+---
 
 ## mrb_define_method
 
@@ -365,15 +425,68 @@ MRB_API void mrb_prepend_module(mrb_state *mrb, struct RClass *cla, struct RClas
 MRB_API void mrb_define_method(mrb_state *mrb, struct RClass *cla, const char *name, mrb_func_t func, mrb_aspec aspec);
 ```
 
-メソッドを定義する。
+クラスまたはモジュールのインスタンスメソッドを定義します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|cla|インスタンスメソッドを定義するクラスのインスタンス（`struct RClass`のポインタ）を渡します。||
+|name|（Ruby側から呼び出す）メソッド名を文字列で指定します。||
+|func|メソッドが呼び出されたときに実際に実行されるC関数を指定します。|呼び出されるC関数は以下の形式である必要があります。<br/>```mrb_value func(struct mrb_state *mrb, mrb_value self);```|
+|aspec|メソッドの引数を`MRB_ARGS_XXX()`形式のマクロで指定します。|マクロ `MRB_ARGS_XXX()` の種類・詳細は [2.2. 定義されているマクロ](mruby-c-api-macros.md) を参照して下さい。|
+
+### 使用例
+
+```c
+static mrb_value
+c_foo(mrb_state *mrb, mrb_value self)
+{
+  return mrb_str_new_lit(mrb, "foo");
+}
+
+static mrb_value
+c_foo(mrb_state *mrb, mrb_value self)
+{
+  const char *name;
+  mrb_get_args(mrb, "z", &name);
+  printf("Hello, %s\n", name);
+  return mrb_nil_value();
+}
+
+void
+add_foo_method(mrb_state* mrb)
+{
+  struct RClass * f = mrb_define_class(mrb, "Foo", mrb->object_class);
+  // Foo#foo -> String
+  mrb_define_method(mrb, f, "foo", c_foo, MRB_ARGS_NONE());
+  // hello(name) -> nil
+  mrb_define_method(mrb, mrb->object_class, "hello", c_hello, MRB_ARGS_REQ(1));
+}
+```
+
+---
 
 ## mrb_define_class_method
 
 ```c
-MRB_API void mrb_define_class_method(mrb_state *mrb, struct RClass *cla, const char *name, mrb_func_t fun, mrb_aspec aspec);
+MRB_API void mrb_define_class_method(mrb_state *mrb, struct RClass *cla, const char *name, mrb_func_t func, mrb_aspec aspec);
 ```
 
-クラスメソッドを定義する。
+クラスメソッドを定義します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|cla|クラスメソッドを定義するクラスのインスタンス（`struct RClass`のポインタ）を渡します。||
+|name|（Ruby側から呼び出す）メソッド名を文字列で指定します。||
+|func|メソッドが呼び出されたときに実際に実行されるC関数を指定します。|呼び出されるC関数は以下の形式である必要があります。<br/>```mrb_value func(struct mrb_state *mrb, mrb_value self);```|
+|aspec|メソッドの引数を`MRB_ARGS_XXX()`形式のマクロで指定します。|マクロ `MRB_ARGS_XXX()` の種類・詳細は [2.2. 定義されているマクロ](mruby-c-api-macros.md) を参照して下さい。|
+
+---
 
 ## mrb_define_singleton_method
 
@@ -381,7 +494,19 @@ MRB_API void mrb_define_class_method(mrb_state *mrb, struct RClass *cla, const c
 MRB_API void mrb_define_singleton_method(mrb_state *mrb, struct RObject *cla, const char *name, mrb_func_t fun, mrb_aspec aspec);
 ```
 
-特異メソッドを定義する。
+特異メソッドを定義します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|cla|特異メソッドを定義するオブジェクト（`struct RObject`のポインタ）を渡します。||
+|name|（Ruby側から呼び出す）メソッド名を文字列で指定します。||
+|func|メソッドが呼び出されたときに実際に実行されるC関数を指定します。|呼び出されるC関数は以下の形式である必要があります。<br/>```mrb_value func(struct mrb_state *mrb, mrb_value self);```|
+|aspec|メソッドの引数を`MRB_ARGS_XXX()`形式のマクロで指定します。|マクロ `MRB_ARGS_XXX()` の種類・詳細は [2.2. 定義されているマクロ](mruby-c-api-macros.md) を参照して下さい。|
+
+---
 
 ## mrb_define_module_function
 
@@ -389,7 +514,19 @@ MRB_API void mrb_define_singleton_method(mrb_state *mrb, struct RObject *cla, co
 MRB_API void mrb_define_module_function(mrb_state *mrb, struct RClass *cla, const char *name, mrb_func_t fun, mrb_aspec aspec);
 ```
 
-モジュール関数を定義する。
+モジュール関数を定義します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|cla|モジュール関数を定義するモジュールのインスタンス（`struct RClass`のポインタ）を渡します。||
+|name|（Ruby側から呼び出す）メソッド名を文字列で指定します。||
+|func|モジュール関数が呼び出されたときに実際に実行されるC関数を指定します。|呼び出されるC関数は以下の形式である必要があります。<br/>```mrb_value func(struct mrb_state *mrb, mrb_value self);```|
+|aspec|メソッドの引数を`MRB_ARGS_XXX()`形式のマクロで指定します。|マクロ `MRB_ARGS_XXX()` の種類・詳細は [2.2. 定義されているマクロ](mruby-c-api-macros.md) を参照して下さい。|
+
+---
 
 ## mrb_define_const
 
@@ -397,7 +534,29 @@ MRB_API void mrb_define_module_function(mrb_state *mrb, struct RClass *cla, cons
 MRB_API void mrb_define_const(mrb_state* mrb, struct RClass* cla, const char *name, mrb_value val);
 ```
 
-定数を定義する。
+クラスまたはモジュールに定数を定義します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|cla|定数を定義するクラスまたはモジュールのインスタンス（`struct RClass`のポインタ）を渡します。||
+|name|（Ruby側から呼び出す）定数名を文字列で指定します。||
+|val|定数に設定する値をmrb_value型で指定します。||
+
+### 使用例
+
+```c
+void
+mrb_mruby_math_gem_init(mrb_state* mrb)
+{
+  struct RClass *m = mrb_define_module(mrb, "Marathon");
+  mrb_define_const(mrb, m, "DISTANCE", mrb_float_value(mrb, 42.195)); // Marathon::DISTANCE -> 42.195
+}
+```
+
+---
 
 ## mrb_undef_method
 
@@ -405,15 +564,35 @@ MRB_API void mrb_define_const(mrb_state* mrb, struct RClass* cla, const char *na
 MRB_API void mrb_undef_method(mrb_state *mrb, struct RClass *cla, const char *name);
 ```
 
-メソッドの定義を削除する。
+メソッド名を指定してインスタンスメソッドの定義を削除します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|cla|メソッドを削除するクラスまたはモジュールのインスタンス（`struct RClass`のポインタ）を渡します。||
+|name|削除するメソッド名を文字列で指定します。||
+
+---
 
 ## mrb_undef_method_id
 
 ```c
-MRB_API void mrb_undef_method_id(mrb_state*, struct RClass*, mrb_sym);
+MRB_API void mrb_undef_method_id(mrb_state *mrb, struct RClass *cla, mrb_sym sym);
 ```
 
-メソッドの定義を削除する。（シンボル指定）
+シンボルを指定してインスタンスメソッドの定義を削除します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|cla|メソッドを削除するクラスまたはモジュールのインスタンス（`struct RClass`のポインタ）を渡します。||
+|sym|削除するメソッドのシンボルを指定します。||
+
+---
 
 ## mrb_undef_class_method
 
@@ -421,15 +600,40 @@ MRB_API void mrb_undef_method_id(mrb_state*, struct RClass*, mrb_sym);
 MRB_API void mrb_undef_class_method(mrb_state *mrb, struct RClass *cls, const char *name);
 ```
 
-クラスメソッドの定義を削除する。
+メソッド名を指定してクラスメソッドの定義を削除します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|cla|メソッドを削除するクラスまたはモジュールのインスタンス（`struct RClass`のポインタ）を渡します。||
+|name|削除するメソッド名を文字列で指定します。||
+
+---
 
 ## mrb_obj_new
 
 ```c
-MRB_API mrb_value mrb_obj_new(mrb_state *mrb, struct RClass *c, mrb_int argc, const mrb_value *argv);
+MRB_API mrb_value mrb_obj_new(mrb_state *mrb, struct RClass *cla, mrb_int argc, const mrb_value *argv);
 ```
 
-C定義のクラスのインスタンスを生成する。
+`mrb_define_class()`などの C API で定義したクラスのインスタンスを生成します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|cla|インスタンス化するクラス（`struct RClass`のポインタ）を渡します。||
+|argc|コンストラクタに渡す引数の数を渡します。||
+|argv|コンストラクタに渡す引数を`mrb_value`配列のポインタで渡します。<br/>引数なし (`argc == 0`) の場合は `NULL` を指定可能です。|引数の配列の要素数は`argc`の数に合わせる必要があります。|
+
+### 戻り値
+
+インスタンス化されたC定義のクラスのオブジェクトが返されます。
+
+---
 
 ## mrb_class_new
 
@@ -438,6 +642,19 @@ MRB_API struct RClass * mrb_class_new(mrb_state *mrb, struct RClass *super);
 ```
 
 Classクラスのインスタンスを生成する。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|super|クラスインスタンスを取得するクラス（`struct RClass`のポインタ）を渡します。||
+
+### 戻り値
+
+Classクラスのオブジェクトが返されます。
+
+---
 
 ## mrb_module_new
 
@@ -462,6 +679,17 @@ MRB_API struct RClass * mrb_class_get(mrb_state *mrb, const char *name);
 ```
 
 定義済みのクラスを取得する。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|name|取得するクラスの名前を指定します。||
+
+### 戻り値
+
+定義済みのクラスのインスタンスが`struct RClass`のポインタで返されます。
 
 ## mrb_exc_get
 
