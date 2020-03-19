@@ -435,7 +435,7 @@ MRB_API void mrb_define_method(mrb_state *mrb, struct RClass *cla, const char *n
 |cla|インスタンスメソッドを定義するクラスのインスタンス（`struct RClass`のポインタ）を渡します。||
 |name|（Ruby側から呼び出す）メソッド名を文字列で指定します。||
 |func|メソッドが呼び出されたときに実際に実行されるC関数を指定します。|呼び出されるC関数は以下の形式である必要があります。<br/>```mrb_value func(struct mrb_state *mrb, mrb_value self);```|
-|aspec|メソッドの引数を`MRB_ARGS_XXX()`形式のマクロで指定します。|マクロ `MRB_ARGS_XXX()` の種類・詳細は [2.2. 定義されているマクロ](mruby-c-api-macros.md) を参照して下さい。|
+|aspec|メソッドの引数を`MRB_ARGS_XXX()`形式のマクロで指定します。|マクロ `MRB_ARGS_XXX()` の種類・詳細は [2.2. 定義されているマクロ](mruby-c-api-macros.html) を参照して下さい。|
 
 ### 使用例
 
@@ -484,7 +484,7 @@ MRB_API void mrb_define_class_method(mrb_state *mrb, struct RClass *cla, const c
 |cla|クラスメソッドを定義するクラスのインスタンス（`struct RClass`のポインタ）を渡します。||
 |name|（Ruby側から呼び出す）メソッド名を文字列で指定します。||
 |func|メソッドが呼び出されたときに実際に実行されるC関数を指定します。|呼び出されるC関数は以下の形式である必要があります。<br/>```mrb_value func(struct mrb_state *mrb, mrb_value self);```|
-|aspec|メソッドの引数を`MRB_ARGS_XXX()`形式のマクロで指定します。|マクロ `MRB_ARGS_XXX()` の種類・詳細は [2.2. 定義されているマクロ](mruby-c-api-macros.md) を参照して下さい。|
+|aspec|メソッドの引数を`MRB_ARGS_XXX()`形式のマクロで指定します。|マクロ `MRB_ARGS_XXX()` の種類・詳細は [2.2. 定義されているマクロ](mruby-c-api-macros.html) を参照して下さい。|
 
 ---
 
@@ -504,7 +504,7 @@ MRB_API void mrb_define_singleton_method(mrb_state *mrb, struct RObject *cla, co
 |cla|特異メソッドを定義するオブジェクト（`struct RObject`のポインタ）を渡します。||
 |name|（Ruby側から呼び出す）メソッド名を文字列で指定します。||
 |func|メソッドが呼び出されたときに実際に実行されるC関数を指定します。|呼び出されるC関数は以下の形式である必要があります。<br/>```mrb_value func(struct mrb_state *mrb, mrb_value self);```|
-|aspec|メソッドの引数を`MRB_ARGS_XXX()`形式のマクロで指定します。|マクロ `MRB_ARGS_XXX()` の種類・詳細は [2.2. 定義されているマクロ](mruby-c-api-macros.md) を参照して下さい。|
+|aspec|メソッドの引数を`MRB_ARGS_XXX()`形式のマクロで指定します。|マクロ `MRB_ARGS_XXX()` の種類・詳細は [2.2. 定義されているマクロ](mruby-c-api-macros.html) を参照して下さい。|
 
 ---
 
@@ -524,7 +524,7 @@ MRB_API void mrb_define_module_function(mrb_state *mrb, struct RClass *cla, cons
 |cla|モジュール関数を定義するモジュールのインスタンス（`struct RClass`のポインタ）を渡します。||
 |name|（Ruby側から呼び出す）メソッド名を文字列で指定します。||
 |func|モジュール関数が呼び出されたときに実際に実行されるC関数を指定します。|呼び出されるC関数は以下の形式である必要があります。<br/>```mrb_value func(struct mrb_state *mrb, mrb_value self);```|
-|aspec|メソッドの引数を`MRB_ARGS_XXX()`形式のマクロで指定します。|マクロ `MRB_ARGS_XXX()` の種類・詳細は [2.2. 定義されているマクロ](mruby-c-api-macros.md) を参照して下さい。|
+|aspec|メソッドの引数を`MRB_ARGS_XXX()`形式のマクロで指定します。|マクロ `MRB_ARGS_XXX()` の種類・詳細は [2.2. 定義されているマクロ](mruby-c-api-macros.html) を参照して下さい。|
 
 ---
 
@@ -3775,7 +3775,7 @@ MRB_API void mrb_define_method_id(mrb_state *mrb, struct RClass *c, mrb_sym mid,
 |c|インスタンスメソッドを定義するクラス・モジュールのインスタンス（`struct RClass`のポインタ）を渡します。||
 |mid|インスタンスメソッド名のシンボル値を渡します。||
 |func|インスタンスメソッドとして呼び出されるC関数を渡します。||
-|aspec|メソッドの引数を`MRB_ARGS_XXX()`形式のマクロで指定します。|マクロ `MRB_ARGS_XXX()` の種類・詳細は [2.2. 定義されているマクロ](mruby-c-api-macros.md) を参照して下さい。|
+|aspec|メソッドの引数を`MRB_ARGS_XXX()`形式のマクロで指定します。|マクロ `MRB_ARGS_XXX()` の種類・詳細は [2.2. 定義されているマクロ](mruby-c-api-macros.html) を参照して下さい。|
 
 ---
 

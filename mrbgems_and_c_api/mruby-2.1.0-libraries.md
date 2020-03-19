@@ -3,7 +3,7 @@
 mruby 2.1.0に標準で含まれるライブラリを以下に示します。  
 `mrbgem` が `core` のメソッドは、mruby VMのコアに含まれるメソッドのため、mruby VMに標準で組み込まれています。
 `core` 以外の `mrbgem` のメソッドは、該当する `mrbgem` をmruby VMに追加することで利用可能になります。  
-`mrbgem` をmruby VMに追加する方法は [mrbgem概要](mrbgems.md) を参照して下さい。
+`mrbgem` をmruby VMに追加する方法は [mrbgem概要](mrbgems.html) を参照して下さい。
 
 |クラス／モジュール|メソッド種別|メソッド名|mrbgem|ISO章番号|備考|
 |:--|:--|:--|:--|:--|:--|
