@@ -184,7 +184,7 @@
 |[mrb_parse_string()](#mrb_parse_string)|mrubyスクリプト文字列をパースする。||
 |[mrb_parse_nstring()](#mrb_parse_nstring)|mrubyスクリプト文字列をパースする。||
 |[mrb_generate_code()](#mrb_generate_code)|mrubyパーサのパース結果からバイトコードを生成する。||
-|[mrb_load_exec()](#mrb_load_exec)|||
+|[mrb_load_exec()](#mrb_load_exec)|mrubyパーサのパース結果を実行する。||
 |[mrb_load_file()](#mrb_load_file)|mrubyスクリプトファイルを実行する。||
 |[mrb_load_file_cxt()](#mrb_load_file_cxt)|mrubyスクリプトファイルを実行する。||
 |[mrb_load_string()](#mrb_load_string)|mrubyスクリプト文字列を実行する。||
@@ -194,31 +194,31 @@
 |[mrb_data_object_alloc()](#mrb_data_object_alloc)|RDataオブジェクトを生成する。||
 |[mrb_data_check_type()](#mrb_data_check_type)|RDataオブジェクトの型をチェックする。||
 |[mrb_data_get_ptr()](#mrb_data_get_ptr)|RDataオブジェクトの保持データを取得する。||
-|[mrb_data_check_get_ptr()](#mrb_data_check_get_ptr)|||
+|[mrb_data_check_get_ptr()](#mrb_data_check_get_ptr)|RDataオブジェクトの型チェック後に保持データを取得する||
 |[mrb_debug_get_filename()](#mrb_debug_get_filename)|デバッグ実行中のソースファイル名を取得する。||
 |[mrb_debug_get_line()](#mrb_debug_get_line)|デバッグ実行中のソースファイルの行番号を取得する。||
 |[mrb_debug_info_alloc()](#mrb_debug_info_alloc)|デバッグ情報を生成する。||
-|[mrb_debug_info_append_file()](#mrb_debug_info_append_file)|||
+|[mrb_debug_info_append_file()](#mrb_debug_info_append_file)|デバッグ情報へのファイルを追加する。||
 |[mrb_debug_info_free()](#mrb_debug_info_free)|デバッグ情報を解放する。||
-|[mrb_load_irep_file()](#mrb_load_irep_file)|||
+|[mrb_load_irep_file()](#mrb_load_irep_file)|mrubyバイナリファイルを実行する。||
 |[mrb_load_irep_file_cxt()](#mrb_load_irep_file_cxt)|mrubyバイナリファイルを実行する。||
-|[mrb_read_irep()](#mrb_read_irep)|mrubyバイナリファイルを実行する。||
-|[mrb_read_irep_buf()](#mrb_read_irep_buf)|mrubyバイトコードを実行する。||
-|[mrb_sys_fail()](#mrb_sys_fail)|||
-|[mrb_exc_new_str()](#mrb_exc_new_str)|||
-|[mrb_make_exception()](#mrb_make_exception)|||
-|[mrb_exc_backtrace()](#mrb_exc_backtrace)|||
-|[mrb_get_backtrace()](#mrb_get_backtrace)|||
-|[mrb_no_method_error()](#mrb_no_method_error)|||
-|[mrb_f_raise()](#mrb_f_raise)|||
+|[mrb_read_irep()](#mrb_read_irep)|mrubyバイナリを読み込む。||
+|[mrb_read_irep_buf()](#mrb_read_irep_buf)|mrubyバイナリを読み込む。||
+|[mrb_sys_fail()](#mrb_sys_fail)|システム異常の場合に呼び出す。||
+|[mrb_exc_new_str()](#mrb_exc_new_str)|例外オブジェクトを生成する。||
+|[mrb_make_exception()](#mrb_make_exception)|例外オブジェクトを生成する。||
+|[mrb_exc_backtrace()](#mrb_exc_backtrace)|例外発生時のバックトレース情報を取得する。||
+|[mrb_get_backtrace()](#mrb_get_backtrace)|バックトレース情報を取得する。||
+|[mrb_no_method_error()](#mrb_no_method_error)|NoMethodErrorをraiseする。||
+|[mrb_f_raise()](#mrb_f_raise)|RuntimeErrorをraiseする。||
 |[mrb_protect()](#mrb_protect)|||
-|[mrb_ensure()](#mrb_ensure)|||
-|[mrb_rescue()](#mrb_rescue)|||
-|[mrb_rescue_exceptions()](#mrb_rescue_exceptions)|||
-|[mrb_free_context()](#mrb_free_context)|||
-|[mrb_bool()](#mrb_bool)|||
-|[mrb_hash_new_capa()](#mrb_hash_new_capa)|Hashオブジェクトを生成する。（サイズ指定）||
-|[mrb_ensure_hash_type()](#mrb_ensure_hash_type)|||
+|[mrb_ensure()](#mrb_ensure)|ensureを実行する。||
+|[mrb_rescue()](#mrb_rescue)|rescueを実行する。||
+|[mrb_rescue_exceptions()](#mrb_rescue_exceptions)|例外処理を行う。||
+|[mrb_free_context()](#mrb_free_context)|mruby実行コンテキストを解放する。||
+|[mrb_object_dead_p()](#mrb_object_dead_p)|解放済みオブジェクトかどうかを確認する。||
+|[mrb_hash_new_capa()](#mrb_hash_new_capa)|Hashオブジェクトを生成する。（容量指定）||
+|[mrb_ensure_hash_type()](#mrb_ensure_hash_type)|Hashオブジェクトに変換可能かをチェックする。||
 |[mrb_check_hash_type()](#mrb_check_hash_type)|||
 |[mrb_hash_new()](#mrb_hash_new)|Hashオブジェクトを生成する。||
 |[mrb_hash_set()](#mrb_hash_set)|Hashオブジェクトに要素を追加する。||
@@ -232,53 +232,53 @@
 |[mrb_hash_clear()](#mrb_hash_clear)|Hashオブジェクトを空にする。||
 |[mrb_hash_size()](#mrb_hash_size)|Hashオブジェクトに登録されているキーの数を取得する。||
 |[mrb_hash_dup()](#mrb_hash_dup)|Hashオブジェクトのクローンを生成する。||
-|[mrb_hash_merge()](#mrb_hash_merge)|2つのHasnオブジェクトを連結する。||
+|[mrb_hash_merge()](#mrb_hash_merge)|2つのHasnオブジェクトをマージする。||
 |[mrb_hash_foreach()](#mrb_hash_foreach)|Hashオブジェクトの各キー・要素毎にメソッドを呼び出す。||
-|[mrb_add_irep()](#mrb_add_irep)|||
-|[mrb_load_irep()](#mrb_load_irep)|mrubyバイナリデータを読み込む。||
-|[mrb_load_irep_buf()](#mrb_load_irep_buf)|mrubyバイナリデータを読み込む。||
-|[mrb_load_irep_cxt()](#mrb_load_irep_cxt)|mrubyバイナリデータを読み込む。||
-|[mrb_load_irep_buf_cxt()](#mrb_load_irep_buf_cxt)|mrubyバイナリデータを読み込む。||
+|[mrb_add_irep()](#mrb_add_irep)|irepを追加する。||
+|[mrb_load_irep()](#mrb_load_irep)|mrubyバイナリデータを読み込んで実行する。||
+|[mrb_load_irep_buf()](#mrb_load_irep_buf)|mrubyバイナリデータを読み込んで実行する。||
+|[mrb_load_irep_cxt()](#mrb_load_irep_cxt)|mrubyバイナリデータを読み込んで実行する。||
+|[mrb_load_irep_buf_cxt()](#mrb_load_irep_buf_cxt)|mrubyバイナリデータを読み込んで実行する。||
 |[mrb_flo_to_fixnum()](#mrb_flo_to_fixnum)|FloatをFixnumに変換する。||
 |[mrb_fixnum_to_str()](#mrb_fixnum_to_str)|FixnumをStringに変換する。||
 |[mrb_float_to_str()](#mrb_float_to_str)|FloatをStringに変換する。||
 |[mrb_to_flo()](#mrb_to_flo)|オブジェクトをFloatに変換する。||
 |[mrb_int_value()](#mrb_int_value)|浮動小数点値を整数に変換する。||
-|[mrb_num_plus()](#mrb_num_plus)|||
-|[mrb_num_minus()](#mrb_num_minus)|||
+|[mrb_num_plus()](#mrb_num_plus)|2つの数値を加算する。||
+|[mrb_num_minus()](#mrb_num_minus)|2つの数値を減算する。||
 |[mrb_num_mul()](#mrb_num_mul)|2つの値の積を取得する。||
 |[mrb_proc_new_cfunc()](#mrb_proc_new_cfunc)|C関数からProcオブジェクトを生成する。||
 |[mrb_closure_new_cfunc()](#mrb_closure_new_cfunc)|C関数からクロージャを生成する。||
 |[mrb_proc_new_cfunc_with_env()](#mrb_proc_new_cfunc_with_env)|C関数からProcオブジェクトを生成する。||
-|[mrb_proc_cfunc_env_get()](#mrb_proc_cfunc_env_get)|||
+|[mrb_proc_cfunc_env_get()](#mrb_proc_cfunc_env_get)|C言語関数ベースのProcオブジェクトに渡された引数を取得する。||
 |[mrb_range_ptr()](#mrb_range_ptr)|RangeオブジェクトからRRange情報を取得する。||
 |[mrb_range_new()](#mrb_range_new)|Rangeオブジェクトを生成する。||
-|[mrb_range_beg_len()](#mrb_range_beg_len)|||
+|[mrb_range_beg_len()](#mrb_range_beg_len)|Rangeオブジェクトの範囲から指定の長さの範囲を取得する。||
 |[mrb_str_strlen()](#mrb_str_strlen)|RString構造体に格納されている文字列の長さを取得する。||
 |[mrb_str_modify()](#mrb_str_modify)|||
 |[mrb_str_modify_keep_ascii()](#mrb_str_modify_keep_ascii)|||
 |[mrb_str_index()](#mrb_str_index)|Stringオブジェクト内の指定文字列が含まれる位置を取得する。||
 |[mrb_str_concat()](#mrb_str_concat)|Stringオブジェクトに文字列を連結する。||
 |[mrb_str_plus()](#mrb_str_plus)|2つの文字列を連結したStringオブジェクトを取得する。||
-|[mrb_ptr_to_str()](#mrb_ptr_to_str)|Cのポインタで指定した内容をStringオブジェクトに変換する。||
+|[mrb_ptr_to_str()](#mrb_ptr_to_str)|Cのポインタのアドレスを16進数文字列に変換する。||
 |[mrb_obj_as_string()](#mrb_obj_as_string)|オブジェクトを文字列に変換する。||
 |[mrb_str_resize()](#mrb_str_resize)|Stringオブジェクトのサイズを変更する。||
 |[mrb_str_substr()](#mrb_str_substr)|Stringオブジェクトの一部を切り取る。||
-|[mrb_ensure_string_type()](#mrb_ensure_string_type)|||
-|[mrb_check_string_type()](#mrb_check_string_type)|||
+|[mrb_ensure_string_type()](#mrb_ensure_string_type)|Stringオブジェクトに変換可能かをチェックする。||
+|[mrb_check_string_type()](#mrb_check_string_type)|`Stirng`オブジェクトかどうかをチェックする。||
 |[mrb_string_type()](#mrb_string_type)|||
-|[mrb_str_new_capa()](#mrb_str_new_capa)|Stringオブジェクトを生成する。（サイズ指定）||
-|[mrb_str_buf_new()](#mrb_str_buf_new)|Stringオブジェクトを生成する。（サイズ指定）||
+|[mrb_str_new_capa()](#mrb_str_new_capa)|Stringオブジェクトを生成する。（容量指定）||
+|[mrb_str_buf_new()](#mrb_str_buf_new)|Stringオブジェクトを生成する。（容量指定）||
 |[mrb_string_cstr()](#mrb_string_cstr)|StringオブジェクトをC文字列に変換する。||
 |[mrb_string_value_cstr()](#mrb_string_value_cstr)|StringオブジェクトをC文字列に変換する。||
 |[mrb_string_value_ptr()](#mrb_string_value_ptr)|Stringオブジェクトの文字列のポインタを返す。||
 |[mrb_string_value_len()](#mrb_string_value_len)|Stringオブジェクトの文字長を取得する。||
 |[mrb_str_dup()](#mrb_str_dup)|Stringオブジェクトを複製する。||
 |[mrb_str_intern()](#mrb_str_intern)|Stringオブジェクトからシンボルを生成する。||
-|[mrb_str_to_inum()](#mrb_str_to_inum)|||
-|[mrb_cstr_to_inum()](#mrb_cstr_to_inum)|||
-|[mrb_str_to_dbl()](#mrb_str_to_dbl)|||
-|[mrb_cstr_to_dbl()](#mrb_cstr_to_dbl)|||
+|[mrb_str_to_inum()](#mrb_str_to_inum)|数値文字列を`Fixnum`に変換します。||
+|[mrb_cstr_to_inum()](#mrb_cstr_to_inum)|数字文字列を`Fixnum`に変換する。||
+|[mrb_str_to_dbl()](#mrb_str_to_dbl)|数値文字列をdouble値に変換する。||
+|[mrb_cstr_to_dbl()](#mrb_cstr_to_dbl)|数値文字列をdouble値に変換する。||
 |[mrb_str_to_str()](#mrb_str_to_str)|オブジェクトをStringオブジェクトに変換する。||
 |[mrb_str_equal()](#mrb_str_equal)|2つのStringオブジェクトが同じかどうかを比較する。||
 |[mrb_str_cat()](#mrb_str_cat)|StringオブジェクトとC文字列を連結する。||
@@ -287,15 +287,15 @@
 |[mrb_str_append()](#mrb_str_append)|Stringオブジェクトの後ろにStringオブジェクトを追加する。||
 |[mrb_str_cmp()](#mrb_str_cmp)|2つのStringオブジェクトを比較する。||
 |[mrb_str_to_cstr()](#mrb_str_to_cstr)|StringオブジェクトからC文字列を生成する。||
-|[mrb_float_read()](#mrb_float_read)|||
-|[mrb_msvc_vsnprintf()](#mrb_msvc_vsnprintf)|||
-|[mrb_msvc_snprintf()](#mrb_msvc_snprintf)|||
+|[mrb_float_read()](#mrb_float_read)|数値文字列をdouble値に変換します。||
+|[mrb_msvc_vsnprintf()](#mrb_msvc_vsnprintf)|MSVC用のvsprintf()実装||
+|[mrb_msvc_snprintf()](#mrb_msvc_snprintf)|MSVC用のsnprintf()実装||
 |[mrb_const_get()](#mrb_const_get)|定数を取得する。||
 |[mrb_const_set()](#mrb_const_set)|定数を設定する。||
 |[mrb_const_defined()](#mrb_const_defined)|定数が定義されているかどうかをチェックする。||
 |[mrb_const_remove()](#mrb_const_remove)|定数の定義を削除する。||
-|[mrb_iv_name_sym_p()](#mrb_iv_name_sym_p)|||
-|[mrb_iv_name_sym_check()](#mrb_iv_name_sym_check)|||
+|[mrb_iv_name_sym_p()](#mrb_iv_name_sym_p)|インスタンス変数名のシンボル値かどうかをチェックする。||
+|[mrb_iv_name_sym_check()](#mrb_iv_name_sym_check)|インスタンス変数名のシンボル値かどうかをチェックする。||
 |[mrb_obj_iv_get()](#mrb_obj_iv_get)|オブジェクトのインスタンス変数を取得する。||
 |[mrb_obj_iv_set()](#mrb_obj_iv_set)|オブジェクトのインスタンス変数を設定する。||
 |[mrb_obj_iv_defined()](#mrb_obj_iv_defined)|オブジェクトにインスタンス変数が定義されているかどうかをチェックする。||
@@ -4012,34 +4012,91 @@ mrubyパーサからパース対象のファイル名を取得します。
 ## mrb_parse_file
 
 ```c
-MRB_API struct mrb_parser_state* mrb_parse_file(mrb_state*,FILE*,mrbc_context*);
+MRB_API struct mrb_parser_state* mrb_parse_file(mrb_state *mrb,FILE *f, mrbc_context *c);
 ```
 
-mrubyスクリプトファイルをパースする。
+mrubyスクリプトファイルをパースします。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|f|パース対象のmrubyスクリプトファイル名のポインタを渡します。||
+|c|コンパイラコンテキスト情報 `mrbc_context` のポインタを渡します。||
+
+### 戻り値
+
+パース実行後の `mrb_parser_state` のポインタが返されます。
+
+---
 
 ## mrb_parse_string
 
 ```c
-MRB_API struct mrb_parser_state* mrb_parse_string(mrb_state*,const char*,mrbc_context*);
+MRB_API struct mrb_parser_state* mrb_parse_string(mrb_state *mrb, const char *s, mrbc_context *c);
 ```
 
-mrubyスクリプト文字列をパースする。
+mrubyスクリプト文字列をパースします。  
+文字列の終端 `\0` までがパースされます。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|s|パース対象の文字列のポインタを渡します。||
+|c|コンパイラコンテキスト情報 `mrbc_context` のポインタを渡します。||
+
+### 戻り値
+
+パース実行後の `mrb_parser_state` のポインタが返されます。
+
+---
 
 ## mrb_parse_nstring
 
 ```c
-MRB_API struct mrb_parser_state* mrb_parse_nstring(mrb_state*,const char*,size_t,mrbc_context*);
+MRB_API struct mrb_parser_state* mrb_parse_nstring(mrb_state *mrb, const char *s, size_t len, mrbc_context *c);
 ```
 
-mrubyスクリプト文字列をパースする。
+文字数を指定してmrubyスクリプト文字列をパースします。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|s|パース対象の文字列のポインタを渡します。||
+|len|パース対象の文字列の長さを渡します。||
+|c|コンパイラコンテキスト情報 `mrbc_context` のポインタを渡します。||
+
+### 戻り値
+
+パース実行後の `mrb_parser_state` のポインタが返されます。
+
+---
 
 ## mrb_generate_code
 
 ```c
-MRB_API struct RProc* mrb_generate_code(mrb_state*, struct mrb_parser_state*);
+MRB_API struct RProc* mrb_generate_code(mrb_state *mrb, struct mrb_parser_state *p);
 ```
 
-mrubyパーサのパース結果からバイトコードを生成する。
+mrubyパーサのパース結果からバイトコードを生成します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|p|パーサ状態 `sttuct mrb_parser_state` のポインタを渡します。||
+
+### 戻り値
+
+エントリとなる`Proc`オブジェクトのインスタンス（`struct RProc` のポインタ）が返されます。
+
+---
 
 ## mrb_load_exec
 
@@ -4047,23 +4104,64 @@ mrubyパーサのパース結果からバイトコードを生成する。
 MRB_API mrb_value mrb_load_exec(mrb_state *mrb, struct mrb_parser_state *p, mrbc_context *c);
 ```
 
+mrubyパーサのパース結果を実行します。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|p|パーサ状態 `sttuct mrb_parser_state` のポインタを渡します。||
+|c|コンパイラコンテキスト情報 `mrbc_context` のポインタを渡します。||
+
+### 戻り値
+
+処理結果が `mrb_value` として返されます。
+
+---
 
 ## mrb_load_file
 
 ```c
-MRB_API mrb_value mrb_load_file(mrb_state*,FILE*);
+MRB_API mrb_value mrb_load_file(mrb_state *mrb, FILE *f);
 ```
 
-mrubyスクリプトファイルを実行する。
+mrubyスクリプトファイルを実行します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|f|mrubyスクリプトファイル名のポインタを渡します。||
+
+### 戻り値
+
+スクリプトの処理結果が `mrb_value` として返されます。
+
+---
 
 ## mrb_load_file_cxt
 
 ```c
-MRB_API mrb_value mrb_load_file_cxt(mrb_state*,FILE*, mrbc_context *cxt);
+MRB_API mrb_value mrb_load_file_cxt(mrb_state *mrb, FILE *f, mrbc_context *cxt);
 ```
 
 mrubyスクリプトファイルを実行する。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|f|mrubyスクリプトファイル名のポインタを渡します。||
+|c|コンパイラコンテキスト情報 `mrbc_context` のポインタを渡します。||
+
+### 戻り値
+
+スクリプトの処理結果が `mrb_value` として返されます。
+
+---
 
 ## mrb_load_string
 
@@ -4072,6 +4170,20 @@ MRB_API mrb_value mrb_load_string(mrb_state *mrb, const char *s);
 ```
 
 mrubyスクリプト文字列を実行する。
+文字列の終端 `\0` までがパースされます。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|s|mrubyスクリプト文字列のポインタを渡します。||
+
+### 戻り値
+
+スクリプトの処理結果が `mrb_value` として返されます。
+
+---
 
 ## mrb_load_nstring
 
@@ -4079,7 +4191,21 @@ mrubyスクリプト文字列を実行する。
 MRB_API mrb_value mrb_load_nstring(mrb_state *mrb, const char *s, size_t len);
 ```
 
-mrubyスクリプト文字列を実行する。
+文字数を指定してmrubyスクリプト文字列を実行します。  
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|s|mrubyスクリプト文字列のポインタを渡します。||
+|len|mrubyスクリプト文字列の長さを渡します。||
+
+### 戻り値
+
+スクリプトの処理結果が `mrb_value` として返されます。
+
+---
 
 ## mrb_load_string_cxt
 
@@ -4087,7 +4213,21 @@ mrubyスクリプト文字列を実行する。
 MRB_API mrb_value mrb_load_string_cxt(mrb_state *mrb, const char *s, mrbc_context *cxt);
 ```
 
-mrubyスクリプト文字列を実行する。
+mrubyスクリプト文字列を実行します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|s|mrubyスクリプト文字列のポインタを渡します。||
+|c|コンパイラコンテキスト情報 `mrbc_context` のポインタを渡します。||
+
+### 戻り値
+
+スクリプトの処理結果が `mrb_value` として返されます。
+
+---
 
 ## mrb_load_nstring_cxt
 
@@ -4097,37 +4237,109 @@ MRB_API mrb_value mrb_load_nstring_cxt(mrb_state *mrb, const char *s, size_t len
 
 mrubyスクリプト文字列を実行する。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|s|mrubyスクリプト文字列のポインタを渡します。||
+|len|mrubyスクリプト文字列の長さを渡します。||
+|cxt|コンパイラコンテキスト情報 `mrbc_context` のポインタを渡します。||
+
+### 戻り値
+
+スクリプトの処理結果が `mrb_value` として返されます。
+
+---
+
 ## mrb_data_object_alloc
 
 ```c
 MRB_API struct RData *mrb_data_object_alloc(mrb_state *mrb, struct RClass* klass, void *datap, const mrb_data_type *type);
 ```
 
-RDataオブジェクトを生成する。
+`RData`オブジェクトを生成します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|klass|オブジェクトを生成するクラスのインスタンス `struct RClass` のポインタを渡します。||
+|datap|RDataオブジェクトにセットするデータを渡します。||
+|type|RDataオブジェクトのデータ型を渡します。||
+
+### 戻り値
+
+生成された `RData` オブジェクトのポインタが返されます。
+
+---
 
 ## mrb_data_check_type
 
 ```c
-MRB_API void mrb_data_check_type(mrb_state *mrb, mrb_value, const mrb_data_type*);
+MRB_API void mrb_data_check_type(mrb_state *mrb, mrb_value obj, const mrb_data_type *type);
 ```
 
-RDataオブジェクトの型をチェックする。
+RDataオブジェクトの型をチェックします。  
+オブジェクトが指定されたデータ型でない場合は `TypeError` がraiseされます。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|obj|型チェックを行うオブジェクトを渡します。||
+|type|RDataオブジェクトのデータ型を渡します。||
+
+---
 
 ## mrb_data_get_ptr
 
 ```c
-MRB_API void *mrb_data_get_ptr(mrb_state *mrb, mrb_value, const mrb_data_type*);
+MRB_API void *mrb_data_get_ptr(mrb_state *mrb, mrb_value obj, const mrb_data_type *type);
 ```
 
-RDataオブジェクトの保持データを取得する。
+RDataオブジェクトの保持データを取得します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|obj|RDataオブジェクトを渡します。||
+|type|RDataオブジェクトのデータ型を渡します。||
+
+
+### 戻り値
+
+`RData`オブジェクトが保持しているデータの先頭アドレスが返されます。
+
+---
 
 ## mrb_data_check_get_ptr
 
 ```c
-MRB_API void *mrb_data_check_get_ptr(mrb_state *mrb, mrb_value, const mrb_data_type*);
+MRB_API void *mrb_data_check_get_ptr(mrb_state *mrb, mrb_value obj, const mrb_data_type *type);
 ```
 
+`RData`オブジェクトの型チェックを行った後、保持しているデータを取得します。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|obj|RDataオブジェクトを渡します。||
+|type|RDataオブジェクトのデータ型を渡します。||
+
+
+### 戻り値
+
+`RData`オブジェクトが保持しているデータの先頭アドレスが返されます。  
+オブジェクトの型が`type`と一致しない場合は `NULL` が返されます。
+
+---
 
 ## mrb_debug_get_filename
 
@@ -4135,7 +4347,21 @@ MRB_API void *mrb_data_check_get_ptr(mrb_state *mrb, mrb_value, const mrb_data_t
 MRB_API const char *mrb_debug_get_filename(mrb_state *mrb, mrb_irep *irep, ptrdiff_t pc);
 ```
 
-デバッグ実行中のソースファイル名を取得する。
+デバッグ実行中のソースファイル名を取得します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|irep|デバッグ実行中のバイトコードのアドレスを渡します。||
+|pc|プログラムカウンタ`pc`の値を渡します。||
+
+### 戻り値
+
+デバッグ実行中のファイル名（`\0`終端）のアドレスが返されます。
+
+---
 
 ## mrb_debug_get_line
 
@@ -4143,7 +4369,21 @@ MRB_API const char *mrb_debug_get_filename(mrb_state *mrb, mrb_irep *irep, ptrdi
 MRB_API int32_t mrb_debug_get_line(mrb_state *mrb, mrb_irep *irep, ptrdiff_t pc);
 ```
 
-デバッグ実行中のソースファイルの行番号を取得する。
+デバッグ実行中のソースファイルの行番号を取得します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|irep|デバッグ実行中のバイトコードのアドレスを渡します。||
+|pc|プログラムカウンタ`pc`の値を渡します。||
+
+### 戻り値
+
+デバッグ実行中の行番号が返されます。
+
+---
 
 ## mrb_debug_info_alloc
 
@@ -4151,15 +4391,45 @@ MRB_API int32_t mrb_debug_get_line(mrb_state *mrb, mrb_irep *irep, ptrdiff_t pc)
 MRB_API mrb_irep_debug_info *mrb_debug_info_alloc(mrb_state *mrb, mrb_irep *irep);
 ```
 
-デバッグ情報を生成する。
+デバッグ情報を生成します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|irep|デバッグを開始するバイトコードのアドレスを渡します。||
+
+### 戻り値
+
+デバッグ情報 `mrb_irep_debug_info` のポインタが返されます。
+
+---
 
 ## mrb_debug_info_append_file
 
 ```c
-MRB_API mrb_irep_debug_info_file *mrb_debug_info_append_file(
+MRB_API mrb_irep_debug_info_file *mrb_debug_info_append_fil(mrb_state *mrb, mrb_irep_debug_info *info, const char *filename, uint16_t *lines, uint32_t start_pos, uint32_t end_pos);
 ```
 
+デバッグ情報にファイル情報を追加します。。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|info|デバッグ情報のポインタを渡します。||
+|filename|デバッグ情報に追加するファイル名のポインタを渡します。||
+|lines|行番号配列のアドレスを渡します。||
+|start_pos|開始位置となる行番号配列のインデックスを渡します。||
+|end_pos|終了位置となる行番号配列のインデックスを渡します。||
+
+### 戻り値
+
+追加されたデバッグファイル情報 `mrb_irep_debug_info_file` のポインタが返されます。
+
+---
 
 ## mrb_debug_info_free
 
@@ -4167,39 +4437,102 @@ MRB_API mrb_irep_debug_info_file *mrb_debug_info_append_file(
 MRB_API void mrb_debug_info_free(mrb_state *mrb, mrb_irep_debug_info *d);
 ```
 
-デバッグ情報を解放する。
+デバッグ情報を解放します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|info|デバッグ情報のポインタを渡します。||
+
+---
 
 ## mrb_load_irep_file
 
 ```c
-MRB_API mrb_value mrb_load_irep_file(mrb_state*,FILE*);
+MRB_API mrb_value mrb_load_irep_file(mrb_state *mrb, FILE *f);
 ```
 
+mrubyバイナリファイル(MRBファイル)を実行します。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|f|実行するmrubyバイナリファイルのファイル名を渡します。||
+
+### 戻り値
+
+mrubyバイナリファイルの実行結果が返されます。
+
+---
 
 ## mrb_load_irep_file_cxt
 
 ```c
-MRB_API mrb_value mrb_load_irep_file_cxt(mrb_state*, FILE*, mrbc_context*);
+MRB_API mrb_value mrb_load_irep_file_cxt(mrb_state *mrb, FILE *f, mrbc_context *c);
 ```
 
-mrubyバイナリファイルを実行する。
+mrubyバイナリファイル(MRBファイル)を実行します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|f|実行するmrubyバイナリファイルのファイル名を渡します。||
+|c|コンパイラコンテキスト情報 `mrbc_context` のポインタを渡 します。||
+
+### 戻り値
+
+mrubyバイナリファイルの実行結果が返されます。
+
+---
 
 ## mrb_read_irep
 
 ```c
-MRB_API mrb_irep *mrb_read_irep(mrb_state*, const uint8_t*);
+MRB_API mrb_irep *mrb_read_irep(mrb_state *mrb, const uint8_t *in);
 ```
 
-mrubyバイナリファイルを実行する。
+mrubyバイナリを読み込みます。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|bin|mrubyバイナリが格納されているエリアの先頭アドレスを渡します。||
+
+### 戻り値
+
+mrubyバイナリのエントリとなる `mrb_irep` のポインタが返されます。
+
+---
 
 ## mrb_read_irep_buf
 
 ```c
-MRB_API mrb_irep *mrb_read_irep_buf(mrb_state*, const void*, size_t);
+MRB_API mrb_irep *mrb_read_irep_buf(mrb_state*, const void *bin, size_t bufsize);
 ```
 
-mrubyバイトコードを実行する。
+mrubyバイナリを読み込みます。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|bin|mrubyバイナリが格納されているエリアの先頭アドレスを渡します。||
+|bufsize|mrubyバイナリが格納されているエリアのサイズを渡します。||
+
+### 戻り値
+
+mrubyバイナリのエントリとなる `mrb_irep` のポインタが返されます。
+
+---
 
 ## mrb_sys_fail
 
@@ -4207,7 +4540,17 @@ mrubyバイトコードを実行する。
 MRB_API void mrb_sys_fail(mrb_state *mrb, const char *mesg);
 ```
 
+システム異常時（処理が継続できない場合など）に呼び出します。  
+`SystemCallError`（定義されている場合）または `RuntimeError` がraiseされます。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|mesg|例外メッセージを渡します。||
+
+---
 
 ## mrb_exc_new_str
 
@@ -4215,7 +4558,21 @@ MRB_API void mrb_sys_fail(mrb_state *mrb, const char *mesg);
 MRB_API mrb_value mrb_exc_new_str(mrb_state *mrb, struct RClass* c, mrb_value str);
 ```
 
+例外オブジェクトを生成します。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|c|例外クラスのインスタンス（`struct RClass`のポインタ）を指定します。||
+|str|例外の付加情報を渡します。||
+
+### 戻り値
+
+生成した例外オブジェクトが返されます。
+
+---
 
 ## mrb_make_exception
 
@@ -4223,7 +4580,21 @@ MRB_API mrb_value mrb_exc_new_str(mrb_state *mrb, struct RClass* c, mrb_value st
 MRB_API mrb_value mrb_make_exception(mrb_state *mrb, mrb_int argc, const mrb_value *argv);
 ```
 
+例外オブジェクトを生成します。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|argc|例外のパラメータの数を渡します。||
+|argv|例外のパラメータ配列のアドレスを渡します。||
+
+### 戻り値
+
+生成した例外オブジェクトが返されます。
+
+---
 
 ## mrb_exc_backtrace
 
@@ -4231,7 +4602,20 @@ MRB_API mrb_value mrb_make_exception(mrb_state *mrb, mrb_int argc, const mrb_val
 MRB_API mrb_value mrb_exc_backtrace(mrb_state *mrb, mrb_value exc);
 ```
 
+例外発生時のバックトレース情報を取得します。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|exc|例外オブジェクトを渡します。||
+
+### 戻り値
+
+バックトレース情報が返されます。
+
+---
 
 ## mrb_get_backtrace
 
@@ -4239,7 +4623,17 @@ MRB_API mrb_value mrb_exc_backtrace(mrb_state *mrb, mrb_value exc);
 MRB_API mrb_value mrb_get_backtrace(mrb_state *mrb);
 ```
 
+### 引数
 
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+
+### 戻り値
+
+バックトレース情報が返されます。
+
+---
 
 ## mrb_no_method_error
 
@@ -4247,15 +4641,44 @@ MRB_API mrb_value mrb_get_backtrace(mrb_state *mrb);
 MRB_API mrb_noreturn void mrb_no_method_error(mrb_state *mrb, mrb_sym id, mrb_value args, const char *fmt, ...);
 ```
 
+`NoMethodError`をraiseします。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|id|メソッド名のシンボル値を渡します。||
+|args|メソッドに渡されたパラメータを渡します。||
+|fmt|例外メッセージの書式設定文字列を渡します。||
+|...|例外メッセージに埋め込むパラメータを渡します。||
+
+### 戻り値
+
+バックトレース情報が返されます。
+
+---
 
 ## mrb_f_raise
 
 ```c
-MRB_API mrb_value mrb_f_raise(mrb_state*, mrb_value);
+MRB_API mrb_value mrb_f_raise(mrb_state *mrb, mrb_value self);
 ```
 
+`RuntimeError`をraiseします。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|self|メソッドのレシーバを渡します。||
+
+### 戻り値
+
+例外がraiseされるため、戻り値が返されることはありません。
+
+---
 
 ## mrb_protect
 
@@ -4268,26 +4691,74 @@ MRB_API mrb_value mrb_protect(mrb_state *mrb, mrb_func_t body, mrb_value data, m
 ## mrb_ensure
 
 ```c
-MRB_API mrb_value mrb_ensure(mrb_state *mrb, mrb_func_t body, mrb_value b_data,
+MRB_API mrb_value mrb_ensure(mrb_state *mrb, mrb_func_t body, mrb_value b_data, mrb_func_t ensure, mrb_value e_data);
 ```
 
+ensureの処理を実行します。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|body|メソッド処理を渡します。||
+|b_data|`body`のレシーバを渡します。||
+|ensure|ensure処理の関数を渡します。||
+|e_data|`ensure`のレシーバを渡します。||
+
+### 戻り値
+
+処理結果が返されます。
+
+---
 
 ## mrb_rescue
 
 ```c
-MRB_API mrb_value mrb_rescue(mrb_state *mrb, mrb_func_t body, mrb_value b_data,
+MRB_API mrb_value mrb_rescue(mrb_state *mrb, mrb_func_t body, mrb_value b_data, mrb_func_t rescue, mrb_value r_data);
 ```
 
+rescueを実行します。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|body|メソッド処理を渡します。||
+|b_data|`body`のレシーバを渡します。||
+|rescure|rescue処理の関数を渡します。||
+|r_data|`rescue`のレシーバを渡します。||
+
+### 戻り値
+
+処理結果が返されます。
+
+---
 
 ## mrb_rescue_exceptions
 
 ```c
-MRB_API mrb_value mrb_rescue_exceptions(mrb_state *mrb, mrb_func_t body, mrb_value b_data,
+MRB_API mrb_value mrb_rescue_exceptions(mrb_state *mrb, mrb_func_t body, mrb_value b_data, mrb_int len, struct RClass **classes);
 ```
 
+例外処理を行います。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|body|メソッド処理を渡します。||
+|b_data|`body`のレシーバを渡します。||
+|len|||
+|classes|||
+
+### 戻り値
+
+処理結果が返されます。
+
+---
 
 ## mrb_free_context
 
@@ -4295,15 +4766,37 @@ MRB_API mrb_value mrb_rescue_exceptions(mrb_state *mrb, mrb_func_t body, mrb_val
 MRB_API void mrb_free_context(struct mrb_state *mrb, struct mrb_context *c);
 ```
 
+mruby実行コンテキストを解放します。
 
+### 引数
 
-## mrb_bool
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|c|解放するmruby実行コンテキスをを渡します。||
+
+---
+
+## mrb_object_dead_p
 
 ```c
-MRB_API mrb_bool
+MRB_API mrb_bool mrb_object_dead_p(struct mrb_state *mrb, struct RBasic *object);
 ```
 
+オブジェクトが解放されたものかどうかを確認します。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|object|チェックするオブジェクトを `struct RBasic` のポインタで渡します。||
+hash
+### 戻り値
+
+解放されたオブジェクトであれば `true`、そうでない場合は `false` が返されます。
+
+---
 
 ## mrb_hash_new_capa
 
@@ -4311,7 +4804,21 @@ MRB_API mrb_bool
 MRB_API mrb_value mrb_hash_new_capa(mrb_state *mrb, mrb_int capa);
 ```
 
-Hashオブジェクトを生成する。（サイズ指定）
+初期容量を指定してHashオブジェクトを生成します。
+要素数は`0`ですが、初期の最大容量が`capa`となります。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|capa|`Hash`オブジェクトの初期容量を指定します。||
+
+### 戻り値
+
+生成された`Hash`オブジェクトが返されます。
+
+---
 
 ## mrb_ensure_hash_type
 
@@ -4319,7 +4826,8 @@ Hashオブジェクトを生成する。（サイズ指定）
 MRB_API mrb_value mrb_ensure_hash_type(mrb_state *mrb, mrb_value hash);
 ```
 
-
+`Hash`オブジェクトに変換可能かをチェックします。  
+変換不能な場合は `TypeError` がraiseされます。
 
 ## mrb_check_hash_type
 
@@ -4327,7 +4835,18 @@ MRB_API mrb_value mrb_ensure_hash_type(mrb_state *mrb, mrb_value hash);
 MRB_API mrb_value mrb_check_hash_type(mrb_state *mrb, mrb_value hash);
 ```
 
+### 引数
 
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|hash|型チェックするオブジェクトを渡します。||
+
+### 戻り値
+
+`hash`が返されます。
+
+---
 
 ## mrb_hash_new
 
@@ -4335,7 +4854,19 @@ MRB_API mrb_value mrb_check_hash_type(mrb_state *mrb, mrb_value hash);
 MRB_API mrb_value mrb_hash_new(mrb_state *mrb);
 ```
 
-Hashオブジェクトを生成する。
+空のHashオブジェクトを生成します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+
+### 戻り値
+
+生成された`Hash`オブジェクトが返されます。
+
+---
 
 ## mrb_hash_set
 
@@ -4343,7 +4874,18 @@ Hashオブジェクトを生成する。
 MRB_API void mrb_hash_set(mrb_state *mrb, mrb_value hash, mrb_value key, mrb_value val);
 ```
 
-Hashオブジェクトに要素を追加する。
+Hashオブジェクトに要素を追加します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|hash|操作対象の`Hash`オブジェクトを渡します。||
+|key|Hashオブジェクトに追加するキーを渡します。||
+|val|キーとペアになる値を渡します。||
+
+---
 
 ## mrb_hash_get
 
@@ -4351,7 +4893,22 @@ Hashオブジェクトに要素を追加する。
 MRB_API mrb_value mrb_hash_get(mrb_state *mrb, mrb_value hash, mrb_value key);
 ```
 
-Hashオブジェクトから指定キーの要素を取得する。
+Hashオブジェクトから指定キーの要素を取得します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|hash|操作対象の`Hash`オブジェクトを渡します。||
+|key|要素を取得するキーを渡します。||
+
+### 戻り値
+
+指定キーに対応する要素値が返されます。  
+指定キーが登録されていない場合は `nil` が返されます。
+
+---
 
 ## mrb_hash_fetch
 
@@ -4359,7 +4916,24 @@ Hashオブジェクトから指定キーの要素を取得する。
 MRB_API mrb_value mrb_hash_fetch(mrb_state *mrb, mrb_value hash, mrb_value key, mrb_value def);
 ```
 
-Hashオブジェクトから指定キーの要素を取得する。
+Hashオブジェクトから指定キーの要素を取得します。  
+値が取得できなかった場合はデフォルト値が返されます。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|hash|操作対象の`Hash`オブジェクトを渡します。||
+|key|要素を取得するキーを渡します。||
+|def|値が取得出来なかった場合に返されるデフォルト値を渡します。||
+
+### 戻り値
+
+指定キーに対応する要素値が返されます。  
+指定キーが登録されていない場合は `def` が返されます。
+
+---
 
 ## mrb_hash_delete_key
 
@@ -4367,7 +4941,22 @@ Hashオブジェクトから指定キーの要素を取得する。
 MRB_API mrb_value mrb_hash_delete_key(mrb_state *mrb, mrb_value hash, mrb_value key);
 ```
 
-Hashオブジェクトの指定キーの要素を削除する。
+Hashオブジェクトの指定キーの要素を削除します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|hash|操作対象の`Hash`オブジェクトを渡します。||
+|key|削除するキーを渡します。||
+
+### 戻り値
+
+削除キーに対応する値が返されます。  
+キーが未登録で削除が行われなかった場合は `nil` が返されます。
+
+---
 
 ## mrb_hash_keys
 
@@ -4375,7 +4964,20 @@ Hashオブジェクトの指定キーの要素を削除する。
 MRB_API mrb_value mrb_hash_keys(mrb_state *mrb, mrb_value hash);
 ```
 
-Hashオブジェクトに登録されているキーの一覧を取得する。
+Hashオブジェクトに登録されているキーの一覧を取得します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|hash|操作対象の`Hash`オブジェクトを渡します。||
+
+### 戻り値
+
+Hashオブジェクトに登録されているキーの一覧が`Array`オブジェクトとして返されます。
+
+---
 
 ## mrb_hash_key_p
 
@@ -4383,7 +4985,21 @@ Hashオブジェクトに登録されているキーの一覧を取得する。
 MRB_API mrb_bool mrb_hash_key_p(mrb_state *mrb, mrb_value hash, mrb_value key);
 ```
 
-Hashオブジェクトのキーとして登録されているかどうかをチェックする。
+Hashオブジェクトのキーとして登録されているかどうかをチェックします。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|hash|チェック対象の`Hash`オブジェクトを渡します。||
+|key|登録チェック対象のキーを渡します。||
+
+### 戻り値
+
+`key`が登録されている場合は `true`、登録されていない場合は `false` が返されます。
+
+---
 
 ## mrb_hash_empty_p
 
@@ -4391,7 +5007,20 @@ Hashオブジェクトのキーとして登録されているかどうかをチ�
 MRB_API mrb_bool mrb_hash_empty_p(mrb_state *mrb, mrb_value self);
 ```
 
-Hashオブジェクトが空かどうかをチェックする。
+Hashオブジェクトが空かどうかをチェックします。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|self|チェック対象の`Hash`オブジェクトを渡します。||
+
+### 戻り値
+
+Hashオブジェクトが空の場合は `true`、空でない場合は `false` が返されます。
+
+---
 
 ## mrb_hash_values
 
@@ -4399,7 +5028,20 @@ Hashオブジェクトが空かどうかをチェックする。
 MRB_API mrb_value mrb_hash_values(mrb_state *mrb, mrb_value hash);
 ```
 
-Hashオブジェクトに登録されている要素の一覧を取得する。
+Hashオブジェクトに登録されている要素の一覧を取得します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|hash|取得対象の`Hash`オブジェクトを渡します。||
+
+### 戻り値
+
+Hashオブジェクトに登録されている要素の一覧が`Array`オブジェクトとして返されます。
+
+---
 
 ## mrb_hash_clear
 
@@ -4407,7 +5049,20 @@ Hashオブジェクトに登録されている要素の一覧を取得する。
 MRB_API mrb_value mrb_hash_clear(mrb_state *mrb, mrb_value hash);
 ```
 
-Hashオブジェクトを空にする。
+Hashオブジェクトを空にします。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|hash|クリア対象の`Hash`オブジェクトを渡します。||
+
+### 戻り値
+
+空になったHashオブジェクトが返されます。
+
+---
 
 ## mrb_hash_size
 
@@ -4415,7 +5070,20 @@ Hashオブジェクトを空にする。
 MRB_API mrb_int mrb_hash_size(mrb_state *mrb, mrb_value hash);
 ```
 
-Hashオブジェクトに登録されているキーの数を取得する。
+Hashオブジェクトに登録されているキーの数を取得します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|hash|取得対象の`Hash`オブジェクトを渡します。||
+
+### 戻り値
+
+Hashオブジェクトに登録されているキーの数が返されます。
+
+---
 
 ## mrb_hash_dup
 
@@ -4423,7 +5091,20 @@ Hashオブジェクトに登録されているキーの数を取得する。
 MRB_API mrb_value mrb_hash_dup(mrb_state *mrb, mrb_value hash);
 ```
 
-Hashオブジェクトのクローンを生成する。
+Hashオブジェクトのクローンを生成します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|hash|コピー対象の`Hash`オブジェクトを渡します。||
+
+### 戻り値
+
+`hash`のクローンが返されます。
+
+---
 
 ## mrb_hash_merge
 
@@ -4431,7 +5112,18 @@ Hashオブジェクトのクローンを生成する。
 MRB_API void mrb_hash_merge(mrb_state *mrb, mrb_value hash1, mrb_value hash2);
 ```
 
-2つのHasnオブジェクトを連結する。
+2つのHasnオブジェクトをマージします。  
+`hash1` は `hash2` とマージした内容に書き換えられます。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|hash1|マージ対象のHashオブジェクトを渡します。||
+|hash2|マージする`Hash`オブジェクトを渡します。||
+
+---
 
 ## mrb_hash_foreach
 
@@ -4439,7 +5131,18 @@ MRB_API void mrb_hash_merge(mrb_state *mrb, mrb_value hash1, mrb_value hash2);
 MRB_API void mrb_hash_foreach(mrb_state *mrb, struct RHash *hash, mrb_hash_foreach_func *func, void *p);
 ```
 
-Hashオブジェクトの各キー・要素毎にメソッドを呼び出す。
+Hashオブジェクトの各キー・要素毎にメソッドを呼び出します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|hash|Hashオブジェクトを渡します。||
+|func|呼び出す関数を渡します。||
+|p|関数へのパラメータを指定します。||
+
+---
 
 ## mrb_add_irep
 
@@ -4447,39 +5150,107 @@ Hashオブジェクトの各キー・要素毎にメソッドを呼び出す。
 MRB_API mrb_irep *mrb_add_irep(mrb_state *mrb);
 ```
 
+mrubyプログラム情報 `irep` を追加します。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+
+### 戻り値
+
+生成された `irep` 情報のポインタが返されます。
+
+---
 
 ## mrb_load_irep
 
 ```c
-MRB_API mrb_value mrb_load_irep(mrb_state*, const uint8_t*);
+MRB_API mrb_value mrb_load_irep(mrb_state *mrb, const uint8_t *bin);
 ```
 
-mrubyバイナリデータを読み込む。
+mrubyバイナリデータを読み込んで実行します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|bin|mrubyバイナリデータ格納領域の先頭アドレスを渡します。||
+
+### 戻り値
+
+mrubyバイナリの実行結果が返されます。
+
+---
 
 ## mrb_load_irep_buf
 
 ```c
-MRB_API mrb_value mrb_load_irep_buf(mrb_state*, const void*, size_t);
+MRB_API mrb_value mrb_load_irep_buf(mrb_state *mrb, const void *buf, size_t bufsize);
 ```
 
-mrubyバイナリデータを読み込む。
+mrubyバイナリデータを読み込んで実行します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|buf|mrubyバイナリデータ格納領域の先頭アドレスを渡します。||
+|bufsize|mrubyバイナリデータのサイズを渡します。||
+
+### 戻り値
+
+mrubyバイナリの実行結果が返されます。
+
+---
 
 ## mrb_load_irep_cxt
 
 ```c
-MRB_API mrb_value mrb_load_irep_cxt(mrb_state*, const uint8_t*, mrbc_context*);
+MRB_API mrb_value mrb_load_irep_cxt(mrb_state *mrb, const uint8_t *bin, mrbc_context *c);
 ```
 
-mrubyバイナリデータを読み込む。
+mrubyバイナリデータを読み込んで実行します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|bin|mrubyバイナリデータ格納領域の先頭アドレスを渡します。||
+|c|コンパイラコンテキスト情報 `mrbc_context` のポインタを渡します。||
+
+### 戻り値
+
+mrubyバイナリの実行結果が返されます。
+
+---
 
 ## mrb_load_irep_buf_cxt
 
 ```c
-MRB_API mrb_value mrb_load_irep_buf_cxt(mrb_state*, const void*, size_t, mrbc_context*);
+MRB_API mrb_value mrb_load_irep_buf_cxt(mrb_state *mrb, const void *buf, size_t bufsize, mrbc_context *c);
 ```
 
-mrubyバイナリデータを読み込む。
+mrubyバイナリデータを読み込んで実行します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|buf|mrubyバイナリデータ格納領域の先頭アドレスを渡します。||
+|bufsize|mrubyバイナリデータのサイズを渡します。||
+|c|コンパイラコンテキスト情報 `mrbc_context` のポインタを渡します。||
+
+### 戻り値
+
+mrubyバイナリの実行結果が返されます。
+
+---
 
 ## mrb_flo_to_fixnum
 
@@ -4487,7 +5258,20 @@ mrubyバイナリデータを読み込む。
 MRB_API mrb_value mrb_flo_to_fixnum(mrb_state *mrb, mrb_value val);
 ```
 
-FloatをFixnumに変換する。
+FloatをFixnumに変換します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|val|`Float`オブジェクトを渡します。|`Float`以外が渡された場合は`TypeError`がraiseされます。|
+
+### 戻り値
+
+`Fixnum`値が返されます。
+
+---
 
 ## mrb_fixnum_to_str
 
@@ -4495,7 +5279,21 @@ FloatをFixnumに変換する。
 MRB_API mrb_value mrb_fixnum_to_str(mrb_state *mrb, mrb_value x, mrb_int base);
 ```
 
-FixnumをStringに変換する。
+FixnumをStringに変換します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|x|`Fixnum`オブジェクトを渡します。||
+|base|数値の基数を渡します。|通常（10進数の場合）は`10`を指定します。|
+
+### 戻り値
+
+基数`base`で数値文字列に変換した結果が返されます。
+
+---
 
 ## mrb_float_to_str
 
@@ -4503,7 +5301,21 @@ FixnumをStringに変換する。
 MRB_API mrb_value mrb_float_to_str(mrb_state *mrb, mrb_value x, const char *fmt);
 ```
 
-FloatをStringに変換する。
+FloatをStringに変換します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|x|`Float`オブジェクトを渡します。||
+|fmt|文字列に変換するための書式設定文字列を渡します。|C関数`sprintf()`に渡す書式設定文字列を指定します。|
+
+### 戻り値
+
+`Float`を書式設定文字列`fmt`を使用して文字列に変換された結果が返されます。
+
+---
 
 ## mrb_to_flo
 
@@ -4511,7 +5323,21 @@ FloatをStringに変換する。
 MRB_API mrb_float mrb_to_flo(mrb_state *mrb, mrb_value x);
 ```
 
-オブジェクトをFloatに変換する。
+数値オブジェクトをFloatに変換します。  
+与えられたオブジェクトが数値型に変換できない場合は `TypeError` がraiseされます。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|x|`Float`オブジェクトに変換する数値を渡します。||
+
+### 戻り値
+
+`Float`オブジェクトが返されます。
+
+---
 
 ## mrb_int_value
 
@@ -4519,7 +5345,20 @@ MRB_API mrb_float mrb_to_flo(mrb_state *mrb, mrb_value x);
 MRB_API mrb_value mrb_int_value(mrb_state *mrb, mrb_float f);
 ```
 
-浮動小数点値を整数に変換する。
+浮動小数点値を整数に変換します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|f|`Fixnum`オブジェクトに変換する数値を渡します。||
+
+### 戻り値
+
+整数値（`Fixnum`オブジェクト）が返されます。
+
+---
 
 ## mrb_num_plus
 
@@ -4527,7 +5366,21 @@ MRB_API mrb_value mrb_int_value(mrb_state *mrb, mrb_float f);
 MRB_API mrb_value mrb_num_plus(mrb_state *mrb, mrb_value x, mrb_value y);
 ```
 
+2つの数値を加算します。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|x|加算される数値を渡します。||
+|y|加算する数値を渡します。||
+
+### 戻り値
+
+`x`に`y`を加算した結果が、演算結果に応じて `Fixnum` または `Float` で返されます。
+
+---
 
 ## mrb_num_minus
 
@@ -4535,7 +5388,21 @@ MRB_API mrb_value mrb_num_plus(mrb_state *mrb, mrb_value x, mrb_value y);
 MRB_API mrb_value mrb_num_minus(mrb_state *mrb, mrb_value x, mrb_value y);
 ```
 
+2つの数値を減算（`x`から`y`を減算）します。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|x|減算される数値を渡します。||
+|y|減算する数値を渡します。||
+
+### 戻り値
+
+`x`から`y`を減算した結果が、演算結果に応じて `Fixnum` または `Float` で返されます。
+
+---
 
 ## mrb_num_mul
 
@@ -4543,15 +5410,42 @@ MRB_API mrb_value mrb_num_minus(mrb_state *mrb, mrb_value x, mrb_value y);
 MRB_API mrb_value mrb_num_mul(mrb_state *mrb, mrb_value x, mrb_value y);
 ```
 
-2つの値の積を取得する。
+2つの値の積を取得します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|x|乗算される数値を渡します。||
+|y|乗算する数値を渡します。||
+
+### 戻り値
+
+`x`に`y`を乗算した結果が、演算結果に応じて `Fixnum` または `Float` で返されます。
+
+---
 
 ## mrb_proc_new_cfunc
 
 ```c
-MRB_API struct RProc *mrb_proc_new_cfunc(mrb_state*, mrb_func_t);
+MRB_API struct RProc *mrb_proc_new_cfunc(mrb_state *mrb, mrb_func_t func);
 ```
 
-C関数からProcオブジェクトを生成する。
+C関数からProcオブジェクトを生成します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|func|呼び出すC関数を指定します。|呼び出されるC関数は以下の形式である必要があります。<br/>```mrb_value func(struct mrb_state *mrb, mrb_value self);```|
+
+### 戻り値
+
+C関数を基に生成した`Proc`オブジェクトのインスタンス（`struct RProc`のポインタ）を返します。
+
+---
 
 ## mrb_closure_new_cfunc
 
@@ -4559,7 +5453,21 @@ C関数からProcオブジェクトを生成する。
 MRB_API struct RProc *mrb_closure_new_cfunc(mrb_state *mrb, mrb_func_t func, int nlocals);
 ```
 
-C関数からクロージャを生成する。
+C関数からクロージャを生成します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|func|呼び出すC関数を指定します。|呼び出されるC関数は以下の形式である必要があります。<br/>```mrb_value func(struct mrb_state *mrb, mrb_value self);```|
+|nlocals|クロージャのローカル変数の数を渡します。||
+
+### 戻り値
+
+C関数を基に生成したクロージャの`Proc`オブジェクトのインスタンス（`struct RProc`のポインタ）を返します。
+
+---
 
 ## mrb_proc_new_cfunc_with_env
 
@@ -4567,7 +5475,22 @@ C関数からクロージャを生成する。
 MRB_API struct RProc *mrb_proc_new_cfunc_with_env(mrb_state *mrb, mrb_func_t func, mrb_int argc, const mrb_value *argv);
 ```
 
-C関数からProcオブジェクトを生成する。
+C関数からProcオブジェクトを生成します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|func|呼び出すC関数を指定します。|呼び出されるC関数は以下の形式である必要があります。<br/>```mrb_value func(struct mrb_state *mrb, mrb_value self);```|
+|argc|Procオブジェクトに渡す引数の数を渡します。||
+|argv|Procオブジェクトに渡す引数列を `mrb_value` 配列のポインタで渡します。|引数配列の要素数は `argc` に合わせる必要があります。|
+
+### 戻り値
+
+C関数を基に生成した`Proc`オブジェクトのインスタンス（`struct RProc`のポインタ）を返します。
+
+---
 
 ## mrb_proc_cfunc_env_get
 
@@ -4575,7 +5498,20 @@ C関数からProcオブジェクトを生成する。
 MRB_API mrb_value mrb_proc_cfunc_env_get(mrb_state *mrb, mrb_int idx);
 ```
 
+C言語関数ベースのProcオブジェクトに渡された引数を取得します。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|idx|引数のインデックス番号番号を渡します。||
+
+### 戻り値
+
+指定位置の引数の値を返します。
+
+---
 
 ## mrb_range_ptr
 
@@ -4583,7 +5519,20 @@ MRB_API mrb_value mrb_proc_cfunc_env_get(mrb_state *mrb, mrb_int idx);
 MRB_API struct RRange* mrb_range_ptr(mrb_state *mrb, mrb_value range);
 ```
 
-RangeオブジェクトからRRange情報を取得する。
+RangeオブジェクトからRRange情報を取得します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|range|`Range`オブジェクトを渡します。||
+
+### 戻り値
+
+`Range`オブジェクト内の`RRange`情報（`struct RRange`のポインタ）を返します。
+
+---
 
 ## mrb_range_new
 
@@ -4591,7 +5540,22 @@ RangeオブジェクトからRRange情報を取得する。
 MRB_API mrb_value mrb_range_new(mrb_state *mrb, mrb_value start, mrb_value end, mrb_bool exclude);
 ```
 
-Rangeオブジェクトを生成する。
+Rangeオブジェクトを生成します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|start|`Range`オブジェクトの最初の値を渡します。||
+|end|`Range`オブジェクトの最後の値を渡します。||
+|exclude|`Range`オブジェクトに最後の値を含むかどうかを渡します。<br/>`true`が指定された場合は最後の値は含まれません。||
+
+### 戻り値
+
+生成された`Range`オブジェクトが返されます。
+
+---
 
 ## mrb_range_beg_len
 
@@ -4599,15 +5563,45 @@ Rangeオブジェクトを生成する。
 MRB_API enum mrb_range_beg_len mrb_range_beg_len(mrb_state *mrb, mrb_value range, mrb_int *begp, mrb_int *lenp, mrb_int len, mrb_bool trunc);
 ```
 
+`Range`オブジェクトから指定の長さの範囲を取得します。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|range|`Range`オブジェクトを渡します。||
+|begp|範囲の最初を格納する領域のポインタを渡します。||
+|lenp|範囲の長さを格納する領域のポインタを渡します。||
+|len|取得する範囲の長さを渡します。||
+|trunc|範囲の長さがオーバーする場合にその部分を切り捨てるかどうかを指定します。<br/>`true`が指定された場合は`Range`オブジェクトの長さで補正されます。||
+
+### 戻り値
+
+範囲が取得出来た場合は `MRB_RANGE_OK`、取得出来なかった（範囲外となった）場合は `MRB_RANGE_OUT` が返されます。
+
+---
 
 ## mrb_str_strlen
 
 ```c
-MRB_API mrb_int mrb_str_strlen(mrb_state*, struct RString*);
+MRB_API mrb_int mrb_str_strlen(mrb_state *mrb, struct RString *s);
 ```
 
-RString構造体に格納されている文字列の長さを取得する。
+RString構造体に格納されている文字列の長さを取得します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|s|`String`オブジェクトの`RString`のポインタを渡します。||
+
+### 戻り値
+
+文字列の長さが返されます。
+
+---
 
 ## mrb_str_modify
 
@@ -4615,7 +5609,16 @@ RString構造体に格納されている文字列の長さを取得する。
 MRB_API void mrb_str_modify(mrb_state *mrb, struct RString *s);
 ```
 
+`String`オブジェクトを変更可能にします。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|s|`String`オブジェクトの`RString`のポインタを渡します。||
+
+---
 
 ## mrb_str_modify_keep_ascii
 
@@ -4623,7 +5626,16 @@ MRB_API void mrb_str_modify(mrb_state *mrb, struct RString *s);
 MRB_API void mrb_str_modify_keep_ascii(mrb_state *mrb, struct RString *s);
 ```
 
+`String`オブジェクトを変更可能にします。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|s|`String`オブジェクトの`RString`のポインタを渡します。||
+
+---
 
 ## mrb_str_index
 
@@ -4631,7 +5643,24 @@ MRB_API void mrb_str_modify_keep_ascii(mrb_state *mrb, struct RString *s);
 MRB_API mrb_int mrb_str_index(mrb_state *mrb, mrb_value str, const char *p, mrb_int len, mrb_int offset);
 ```
 
-Stringオブジェクト内の指定文字列が含まれる位置を取得する。
+Stringオブジェクト内の指定文字列が含まれる位置を取得します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|str|`String`オブジェクトを渡します。||
+|p|検索対象の文字列のポインタを渡します。||
+|len|検索対象の文字列の長さを渡します。||
+|offset|`String`オブジェクトの検索開始位置（インデックス）を渡します。||
+
+### 戻り値
+
+文字列が見つかった位置（インデックス）が返されます。  
+文字列が見つからなかった場合は `-1` が返されます。
+
+---
 
 ## mrb_str_concat
 
@@ -4639,7 +5668,17 @@ Stringオブジェクト内の指定文字列が含まれる位置を取得す�
 MRB_API void mrb_str_concat(mrb_state *mrb, mrb_value self, mrb_value other);
 ```
 
-Stringオブジェクトに文字列を連結する。
+Stringオブジェクトに文字列を連結します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|self|`String`オブジェクトを渡します。||
+|other|連結するオブジェクトを渡します。|`String`オブジェクト以外が渡された場合は`String`オブジェクトに変換した後に連結されます。|
+
+---
 
 ## mrb_str_plus
 
@@ -4647,7 +5686,21 @@ Stringオブジェクトに文字列を連結する。
 MRB_API mrb_value mrb_str_plus(mrb_state *mrb, mrb_value a, mrb_value b);
 ```
 
-2つの文字列を連結したStringオブジェクトを取得する。
+2つの文字列を連結したStringオブジェクトを取得します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|a|連結される`String`オブジェクトを渡します。||
+|b|連結する`String`オブジェクトを渡します。||
+
+### 戻り値
+
+文字列 `a` の後ろに文字列 `b` を連結した`String`オブジェクトが返されます。
+
+---
 
 ## mrb_ptr_to_str
 
@@ -4655,7 +5708,21 @@ MRB_API mrb_value mrb_str_plus(mrb_state *mrb, mrb_value a, mrb_value b);
 MRB_API mrb_value mrb_ptr_to_str(mrb_state *mrb, void *p);
 ```
 
-Cのポインタで指定した内容をStringオブジェクトに変換する。
+Cのポインタのアドレスを16進数文字列に変換します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|p|文字列に変換するポインタ（アドレス）を渡します。||
+
+### 戻り値
+
+ポインタを `0xXXXXXXXX` 形式の16進数文字列に変換した`String`オブジェクトが返されます。  
+アドレスの桁数は処理系に依存します。
+
+---
 
 ## mrb_obj_as_string
 
@@ -4665,13 +5732,40 @@ MRB_API mrb_value mrb_obj_as_string(mrb_state *mrb, mrb_value obj);
 
 オブジェクトを文字列に変換する。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|obj|文字列に変換するオブジェクトを渡します。||
+
+### 戻り値
+
+オブジェクトを`to_s`によって変換した文字列が返されます。
+
+---
+
 ## mrb_str_resize
 
 ```c
 MRB_API mrb_value mrb_str_resize(mrb_state *mrb, mrb_value str, mrb_int len);
 ```
 
-Stringオブジェクトのサイズを変更する。
+Stringオブジェクトのサイズを変更します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|str|Stringオブジェクトを渡します。||
+|len|変更する長さを渡します。||
+
+### 戻り値
+
+`str`の長さを`len`に変更した`String`オブジェクトが返されます。
+
+---
 
 ## mrb_str_substr
 
@@ -4679,15 +5773,45 @@ Stringオブジェクトのサイズを変更する。
 MRB_API mrb_value mrb_str_substr(mrb_state *mrb, mrb_value str, mrb_int beg, mrb_int len);
 ```
 
-Stringオブジェクトの一部を切り取る。
+Stringオブジェクトの一部を切り取ります。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|str|Stringオブジェクトを渡します。||
+|beg|切り取り対象の先頭位置（インデックス）を渡します。||
+|len|切り取る長さを渡します。||
+
+### 戻り値
+
+`str`の`beg`から`len`文字分切り取った文字列を`String`オブジェクトとして返します。
+
+---
 
 ## mrb_ensure_string_type
+## mrb_string_type
 
 ```c
 MRB_API mrb_value mrb_ensure_string_type(mrb_state *mrb, mrb_value str);
 ```
 
+Stringオブジェクトに変換可能かをチェックします。  
+Stringオブジェクトに変換できない場合は `TypeError` がraiseされます。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|str|Stringオブジェクトを渡します。||
+
+### 戻り値
+
+`str`が返されます。
+
+---
 
 ## mrb_check_string_type
 
@@ -4695,15 +5819,21 @@ MRB_API mrb_value mrb_ensure_string_type(mrb_state *mrb, mrb_value str);
 MRB_API mrb_value mrb_check_string_type(mrb_state *mrb, mrb_value str);
 ```
 
+オブジェクトが`Stirng`オブジェクトかどうかをチェックします。
 
+### 引数
 
-## mrb_string_type
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|str|Stringかどうかをチェックするオブジェクトを渡します。||
 
-```c
-MRB_API mrb_value mrb_string_type(mrb_state *mrb, mrb_value str);
-```
+### 戻り値
 
+`str`が`String`オブジェクトの場合は `str` が返されます。  
+`String`オブジェクトではない場合は `nil`が返されます。
 
+---
 
 ## mrb_str_new_capa
 
@@ -4711,7 +5841,21 @@ MRB_API mrb_value mrb_string_type(mrb_state *mrb, mrb_value str);
 MRB_API mrb_value mrb_str_new_capa(mrb_state *mrb, size_t capa);
 ```
 
-Stringオブジェクトを生成する。（サイズ指定）
+処理容量を指定してStringオブジェクトを生成します。
+文字数は`0`ですが、初期最大容量が`capa`となります。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|capa|`String`オブジェクトの初期容量を指定します。||
+
+### 戻り値
+
+生成した`String`オブジェクトが返されます。
+
+---
 
 ## mrb_str_buf_new
 
@@ -4719,23 +5863,43 @@ Stringオブジェクトを生成する。（サイズ指定）
 MRB_API mrb_value mrb_str_buf_new(mrb_state *mrb, size_t capa);
 ```
 
-Stringオブジェクトを生成する。（サイズ指定）
+処理容量を指定してStringオブジェクトを生成します。
+初期最大容量は `capa` が `MRB_STR_BUF_MIN_SIZE`（デフォルト`128`）よりも小さい場合は`MRB_STR_BUF_MIN_SIZE`、そうでない場合は `capa` となります。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|capa|`String`オブジェクトの初期容量を指定します。||
+
+### 戻り値
+
+生成した`String`オブジェクトが返されます。
+
+---
 
 ## mrb_string_cstr
+## mrb_string_value_cstr
 
 ```c
 MRB_API const char *mrb_string_cstr(mrb_state *mrb, mrb_value str);
 ```
 
-StringオブジェクトをC文字列に変換する。
+StringオブジェクトをC言語の文字列に変換します。
 
-## mrb_string_value_cstr
+### 引数
 
-```c
-MRB_API const char *mrb_string_value_cstr(mrb_state *mrb, mrb_value *str);
-```
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|str|`String`オブジェクトを指定します。||
 
-StringオブジェクトをC文字列に変換する。
+### 戻り値
+
+C言語形式の文字列のポインタが返されます。
+
+---
 
 ## mrb_string_value_ptr
 
@@ -4743,7 +5907,21 @@ StringオブジェクトをC文字列に変換する。
 MRB_API const char *mrb_string_value_ptr(mrb_state *mrb, mrb_value str);
 ```
 
-Stringオブジェクトの文字列のポインタを返す。
+Stringオブジェクトの文字列のポインタを返します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|str|`String`オブジェクトを指定します。||
+
+### 戻り値
+
+文字列のポインタが返されます。  
+文字列の終端に `\0` が付加されていない場合があります。文字列の長さを得るためには `mrb_string_value_len()` を使用します。
+
+---
 
 ## mrb_string_value_len
 
@@ -4751,7 +5929,20 @@ Stringオブジェクトの文字列のポインタを返す。
 MRB_API mrb_int mrb_string_value_len(mrb_state *mrb, mrb_value str);
 ```
 
-Stringオブジェクトの文字長を取得する。
+Stringオブジェクトの文字長を取得します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|str|`String`オブジェクトを指定します。||
+
+### 戻り値
+
+文字列の長さが返されます。
+
+---
 
 ## mrb_str_dup
 
@@ -4759,7 +5950,20 @@ Stringオブジェクトの文字長を取得する。
 MRB_API mrb_value mrb_str_dup(mrb_state *mrb, mrb_value str);
 ```
 
-Stringオブジェクトを複製する。
+Stringオブジェクトを複製します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|str|`String`オブジェクトを指定します。||
+
+### 戻り値
+
+複製された'String`オブジェクトが返されます。
+
+---
 
 ## mrb_str_intern
 
@@ -4767,7 +5971,20 @@ Stringオブジェクトを複製する。
 MRB_API mrb_value mrb_str_intern(mrb_state *mrb, mrb_value self);
 ```
 
-Stringオブジェクトからシンボルを生成する。
+Stringオブジェクトからシンボルを生成します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|self|`String`オブジェクトを指定します。||
+
+### 戻り値
+
+`String`オブジェクトを基に生成した`Symbol`オブジェクトが返されます。
+
+---
 
 ## mrb_str_to_inum
 
@@ -4775,7 +5992,22 @@ Stringオブジェクトからシンボルを生成する。
 MRB_API mrb_value mrb_str_to_inum(mrb_state *mrb, mrb_value str, mrb_int base, mrb_bool badcheck);
 ```
 
+数値文字列を`Fixnum`に変換します。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|str|`String`オブジェクトを指定します。||
+|base|数値の基数を渡します。||
+|badcheck|変換不能な場合のチェックを行うかどうかを指定します。<br/>`true`が指定された場合で数値に変換できない場合は`ArgumentError`がraiseされます。||
+
+### 戻り値
+
+文字列を数値に変換した結果が `Fixnum` オブジェクトとして返されます。
+
+---
 
 ## mrb_cstr_to_inum
 
@@ -4783,7 +6015,22 @@ MRB_API mrb_value mrb_str_to_inum(mrb_state *mrb, mrb_value str, mrb_int base, m
 MRB_API mrb_value mrb_cstr_to_inum(mrb_state *mrb, const char *s, mrb_int base, mrb_bool badcheck);
 ```
 
+C言語文字列形式の数字文字列を`Fixnum`に変換します。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|s|数値文字列の先頭アドレスを指定します。||
+|base|数値の基数を渡します。||
+|badcheck|変換不能な場合のチェックを行うかどうかを指定します。<br/>`true`が指定された場合で数値に変換できない場合は`ArgumentError`がraiseされます。||
+
+### 戻り値
+
+文字列を数値に変換した結果が `Fixnum` オブジェクトとして返されます。
+
+---
 
 ## mrb_str_to_dbl
 
@@ -4791,7 +6038,21 @@ MRB_API mrb_value mrb_cstr_to_inum(mrb_state *mrb, const char *s, mrb_int base, 
 MRB_API double mrb_str_to_dbl(mrb_state *mrb, mrb_value str, mrb_bool badcheck);
 ```
 
+数値文字列をdouble値に変換します。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|str|`String`オブジェクトを渡します。||
+|badcheck|変換不能な場合のチェックを行うかどうかを指定します。<br/>`true`が指定された場合で数値に変換できない場合は`ArgumentError`がraiseされます。||
+
+### 戻り値
+
+文字列を数値に変換した結果が`double`値として返されます。
+
+---
 
 ## mrb_cstr_to_dbl
 
@@ -4799,7 +6060,21 @@ MRB_API double mrb_str_to_dbl(mrb_state *mrb, mrb_value str, mrb_bool badcheck);
 MRB_API double mrb_cstr_to_dbl(mrb_state *mrb, const char *s, mrb_bool badcheck);
 ```
 
+数値文字列をdouble値に変換します。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|s|数値文字列の先頭アドレスを渡します。||
+|badcheck|変換不能な場合のチェックを行うかどうかを指定します。<br/>`true`が指定された場合で数値に変換できない場合は`ArgumentError`がraiseされます。||
+
+### 戻り値
+
+文字列を数値に変換した結果が`double`値として返されます。
+
+---
 
 ## mrb_str_to_str
 
@@ -4807,7 +6082,20 @@ MRB_API double mrb_cstr_to_dbl(mrb_state *mrb, const char *s, mrb_bool badcheck)
 MRB_API mrb_value mrb_str_to_str(mrb_state *mrb, mrb_value str);
 ```
 
-オブジェクトをStringオブジェクトに変換する。
+オブジェクトをStringオブジェクトに変換します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|str|変換するオブジェクトを渡します。||
+
+### 戻り値
+
+`str`を変換した`String`オブジェクトが返されます。
+
+---
 
 ## mrb_str_equal
 
@@ -4815,7 +6103,21 @@ MRB_API mrb_value mrb_str_to_str(mrb_state *mrb, mrb_value str);
 MRB_API mrb_bool mrb_str_equal(mrb_state *mrb, mrb_value str1, mrb_value str2);
 ```
 
-2つのStringオブジェクトが同じかどうかを比較する。
+2つのStringオブジェクトが同じかどうかを比較します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|str1|比較する`String`オブジェクトを渡します。||
+|str2|比較する`String`オブジェクトを渡します。||
+
+### 戻り値
+
+2つの`String`オブジェクトが同じ場合は `true`、異なる場合は `false` が返されます。
+
+---
 
 ## mrb_str_cat
 
@@ -4825,6 +6127,21 @@ MRB_API mrb_value mrb_str_cat(mrb_state *mrb, mrb_value str, const char *ptr, si
 
 StringオブジェクトとC文字列を連結する。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|str|連結される`String`オブジェクトを渡します。||
+|ptr|連結するC文字列の先頭アドレスを渡します。||
+|len|連結するC文字列の長さを渡します。||
+
+### 戻り値
+
+`str`の後ろに`ptr`（文字数:`len`）を連結した文字列の`String`オブジェクトが返されます。
+
+---
+
 ## mrb_str_cat_cstr
 
 ```c
@@ -4832,6 +6149,20 @@ MRB_API mrb_value mrb_str_cat_cstr(mrb_state *mrb, mrb_value str, const char *pt
 ```
 
 StringオブジェクトとC文字列を連結する。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|str|連結される`String`オブジェクトを渡します。||
+|ptr|連結するC文字列の先頭アドレスを渡します。||
+
+### 戻り値
+
+`str`の後ろに`ptr`を連結した文字列の`String`オブジェクトが返されます。
+
+---
 
 ## mrb_str_cat_str
 
@@ -4841,13 +6172,42 @@ MRB_API mrb_value mrb_str_cat_str(mrb_state *mrb, mrb_value str, mrb_value str2)
 
 2つのStringオブジェクトを連結する。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|str|連結される`String`オブジェクトを渡します。||
+|str2|連結する`String`オブジェクトを渡します。||
+
+### 戻り値
+
+`str`の後ろに`str2`を連結した文字列の`String`オブジェクトが返されます。
+
+---
+
 ## mrb_str_append
 
 ```c
 MRB_API mrb_value mrb_str_append(mrb_state *mrb, mrb_value str, mrb_value str2);
 ```
 
-Stringオブジェクトの後ろにStringオブジェクトを追加する。
+Stringオブジェクトの後ろにStringオブジェクトを追加します。  
+`str`の後ろに`str2`が追加されます。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|str|連結される`String`オブジェクトを渡します。||
+|str2|連結する`String`オブジェクトを渡します。||
+
+### 戻り値
+
+`str`の後ろに`str2`を連結した文字列の`String`オブジェクトが返されます。
+
+---
 
 ## mrb_str_cmp
 
@@ -4855,7 +6215,24 @@ Stringオブジェクトの後ろにStringオブジェクトを追加する。
 MRB_API int mrb_str_cmp(mrb_state *mrb, mrb_value str1, mrb_value str2);
 ```
 
-2つのStringオブジェクトを比較する。
+2つのStringオブジェクトを比較します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|str1|比較する`String`オブジェクトを渡します。||
+|str2|比較する`String`オブジェクトを渡します。||
+
+### 戻り値
+
+文字列の比較結果が返されます。
+- `str1 == str2`: `0`が返されます。
+- `str1 < str2`: 負数が返されます。
+- `str1 > str2`: 正数が返されます。
+
+---
 
 ## mrb_str_to_cstr
 
@@ -4865,13 +6242,39 @@ MRB_API char *mrb_str_to_cstr(mrb_state *mrb, mrb_value str);
 
 StringオブジェクトからC文字列を生成する。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|str|`String`オブジェクトを渡します。||
+
+### 戻り値
+
+C文字列の先頭アドレスが返されます。
+
+---
+
 ## mrb_float_read
 
 ```c
-MRB_API double mrb_float_read(const char*, char**);
+MRB_API double mrb_float_read(const char *string, char **endPtr);
 ```
 
+浮動小数点数の数値文字列を読み込んで`double`値に変換します。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|string|数値文字列の先頭アドレスを渡します。||
+|endPtr|数値文字列の終端のアドレスを格納するエリアのポインタを渡します。<br/>終端アドレスが必要ない場合は`NULL`を渡します。||
+
+### 戻り値
+
+数値文字列の変換結果が`double`値として返されます。
+
+---
 
 ## mrb_msvc_vsnprintf
 
@@ -4879,7 +6282,7 @@ MRB_API double mrb_float_read(const char*, char**);
 MRB_API int mrb_msvc_vsnprintf(char *s, size_t n, const char *format, va_list arg);
 ```
 
-
+MSVC用の`vsnprintf()`の実装です。
 
 ## mrb_msvc_snprintf
 
@@ -4887,39 +6290,92 @@ MRB_API int mrb_msvc_vsnprintf(char *s, size_t n, const char *format, va_list ar
 MRB_API int mrb_msvc_snprintf(char *s, size_t n, const char *format, ...);
 ```
 
-
+MSVC用の`snprintf()`の実装です。
 
 ## mrb_const_get
 
 ```c
-MRB_API mrb_value mrb_const_get(mrb_state*, mrb_value, mrb_sym);
+MRB_API mrb_value mrb_const_get(mrb_state *mrb, mrb_value mod, mrb_sym sym);
 ```
 
-定数を取得する。
+定数を取得します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|mod|定数が定義されているクラス・モジュールを渡します。||
+|sym|定数名のシンボル値を渡します。||
+
+### 戻り値
+
+定数値が返されます。
+
+---
 
 ## mrb_const_set
 
 ```c
-MRB_API void mrb_const_set(mrb_state*, mrb_value, mrb_sym, mrb_value);
+MRB_API void mrb_const_set(mrb_state *mrb, mrb_value mod, mrb_sym sym, mrb_value v);
 ```
 
-定数を設定する。
+定数を設定します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|mod|定数が定義されているクラス・モジュールを渡します。||
+|sym|定数名のシンボル値を渡します。||
+|v|定数に設定数値を渡します。||
+
+---
 
 ## mrb_const_defined
 
 ```c
-MRB_API mrb_bool mrb_const_defined(mrb_state*, mrb_value, mrb_sym);
+MRB_API mrb_bool mrb_const_defined(mrb_state *mrb, mrb_value mod, mrb_sym sym);
 ```
 
 定数が定義されているかどうかをチェックする。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|mod|定数が定義されているクラス・モジュールを渡します。||
+|sym|定数名のシンボル値を渡します。||
+
+### 戻り値
+
+定数が定義されていれば `true`、定義されていなければ `false` が返されます。
+
+---
+
 ## mrb_const_remove
 
 ```c
-MRB_API void mrb_const_remove(mrb_state*, mrb_value, mrb_sym);
+MRB_API void mrb_const_remove(mrb_state *mrb, mrb_value mod, mrb_sym sym);
 ```
 
-定数の定義を削除する。
+定数の定義を削除します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|mod|定数が定義されているクラス・モジュールを渡します。||
+|sym|削除する定数名のシンボル値を渡します。||
+
+### 戻り値
+
+定数が定義されていれば `true`、定義されていなければ `false` が返されます。
+
+---
 
 ## mrb_iv_name_sym_p
 
@@ -4927,7 +6383,20 @@ MRB_API void mrb_const_remove(mrb_state*, mrb_value, mrb_sym);
 MRB_API mrb_bool mrb_iv_name_sym_p(mrb_state *mrb, mrb_sym sym);
 ```
 
+インスタンス変数名のシンボル値かどうかを返します。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|sym|インスタンス変数名のシンボル値を渡します。||
+
+### 戻り値
+
+インスタンス変数が定義されていれば `true`、定義されていなければ `false` が返されます。
+
+---
 
 ## mrb_iv_name_sym_check
 
@@ -4935,7 +6404,17 @@ MRB_API mrb_bool mrb_iv_name_sym_p(mrb_state *mrb, mrb_sym sym);
 MRB_API void mrb_iv_name_sym_check(mrb_state *mrb, mrb_sym sym);
 ```
 
+インスタンス変数名のシンボル値かどうかをチェックします。  
+インスタンス変数名出ない場合は `NameError` がraiseされます。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|sym|インスタンス変数名のシンボル値を渡します。||
+
+---
 
 ## mrb_obj_iv_get
 
@@ -4943,7 +6422,24 @@ MRB_API void mrb_iv_name_sym_check(mrb_state *mrb, mrb_sym sym);
 MRB_API mrb_value mrb_obj_iv_get(mrb_state *mrb, struct RObject *obj, mrb_sym sym);
 ```
 
-オブジェクトのインスタンス変数を取得する。
+オブジェクトのインスタンス変数を取得します。
+
+インスタンス変数名のシンボル値かどうかをチェックします。  
+インスタンス変数名出ない場合は `NameError` がraiseされます。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|obj|インスタンス変数を保持しているオブジェクトを渡します。||
+|sym|インスタンス変数名のシンボル値を渡します。||
+
+### 戻り値
+
+インスタンス変数の値が返されます。
+
+---
 
 ## mrb_obj_iv_set
 
@@ -4951,7 +6447,18 @@ MRB_API mrb_value mrb_obj_iv_get(mrb_state *mrb, struct RObject *obj, mrb_sym sy
 MRB_API void mrb_obj_iv_set(mrb_state *mrb, struct RObject *obj, mrb_sym sym, mrb_value v);
 ```
 
-オブジェクトのインスタンス変数を設定する。
+オブジェクトのインスタンス変数を設定します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|obj|インスタンス変数を保持しているオブジェクトを渡します。||
+|sym|インスタンス変数名のシンボル値を渡します。||
+|v|インスタンス変数にセットする値を渡します。||
+
+---
 
 ## mrb_obj_iv_defined
 
@@ -4961,6 +6468,20 @@ MRB_API mrb_bool mrb_obj_iv_defined(mrb_state *mrb, struct RObject *obj, mrb_sym
 
 オブジェクトにインスタンス変数が定義されているかどうかをチェックする。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|obj|インスタンス変数を保持しているオブジェクトを渡します。||
+|sym|インスタンス変数名のシンボル値を渡します。||
+
+### 戻り値
+
+インスタンス変数が定義されていれば `true`、定義されていなければ `false` が返されます。
+
+---
+
 ## mrb_iv_get
 
 ```c
@@ -4969,21 +6490,60 @@ MRB_API mrb_value mrb_iv_get(mrb_state *mrb, mrb_value obj, mrb_sym sym);
 
 オブジェクトのインスタンス変数を取得する。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|obj|インスタンス変数を保持しているオブジェクトを渡します。||
+|sym|インスタンス変数名のシンボル値を渡します。||
+
+### 戻り値
+
+インスタンス変数の値が返されます。
+
+---
+
 ## mrb_iv_set
 
 ```c
 MRB_API void mrb_iv_set(mrb_state *mrb, mrb_value obj, mrb_sym sym, mrb_value v);
 ```
 
-オブジェクトのインスタンス変数を設定する。
+オブジェクトのインスタンス変数を設定します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|obj|インスタンス変数を保持しているオブジェクトを渡します。||
+|sym|インスタンス変数名のシンボル値を渡します。||
+|v|インスタンス変数にセットする値を渡します。||
+
+---
 
 ## mrb_iv_defined
 
 ```c
-MRB_API mrb_bool mrb_iv_defined(mrb_state*, mrb_value, mrb_sym);
+MRB_API mrb_bool mrb_iv_defined(mrb_state *mrb, mrb_value obj, mrb_sym sym);
 ```
 
-オブジェクトにインスタンス変数が定義されているかどうかをチェックする。
+オブジェクトにインスタンス変数が定義されているかどうかをチェックします。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|obj|インスタンス変数を保持しているオブジェクトを渡します。||
+|sym|インスタンス変数名のシンボル値を渡します。||
+
+### 戻り値
+
+インスタンス変数が定義されていれば `true`、定義されていなければ `false` が返されます。
+
+---
 
 ## mrb_iv_remove
 
@@ -4991,7 +6551,21 @@ MRB_API mrb_bool mrb_iv_defined(mrb_state*, mrb_value, mrb_sym);
 MRB_API mrb_value mrb_iv_remove(mrb_state *mrb, mrb_value obj, mrb_sym sym);
 ```
 
-オブジェクトのインスタンス変数を削除する。
+オブジェクトのインスタンス変数を削除します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|obj|インスタンス変数を保持しているオブジェクトを渡します。||
+|sym|インスタンス変数名のシンボル値を渡します。||
+
+### 戻り値
+
+削除されたインスタンス変数に設定されていた値が返されます。
+
+---
 
 ## mrb_iv_copy
 
@@ -4999,7 +6573,17 @@ MRB_API mrb_value mrb_iv_remove(mrb_state *mrb, mrb_value obj, mrb_sym sym);
 MRB_API void mrb_iv_copy(mrb_state *mrb, mrb_value dst, mrb_value src);
 ```
 
-オブジェクトのインスタンス変数を複製する。
+オブジェクトのインスタンス変数を複製します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|dst|インスタンス変数コピー先のオブジェクトを渡します。||
+|src|インスタンス変数コピー元のオブジェクトを渡します。||
+
+---
 
 ## mrb_const_defined_at
 
@@ -5007,7 +6591,21 @@ MRB_API void mrb_iv_copy(mrb_state *mrb, mrb_value dst, mrb_value src);
 MRB_API mrb_bool mrb_const_defined_at(mrb_state *mrb, mrb_value mod, mrb_sym id);
 ```
 
-モジュールに定数が定義されているかどうかをチェックする。
+モジュールに定数が定義されているかどうかをチェックします。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|mod|モジュールを渡します。||
+|id|定数名のシンボル値を渡します。||
+
+### 戻り値
+
+モジュールに定数が定義されて入れば `true`、定義されていなければ `false` が返されます。
+
+---
 
 ## mrb_gv_get
 
@@ -5017,13 +6615,36 @@ MRB_API mrb_value mrb_gv_get(mrb_state *mrb, mrb_sym sym);
 
 グローバル変数を取得する。
 
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|sym|グローバル変数名のシンボル値を渡します。||
+
+### 戻り値
+
+グローバル変数の値が返されます。
+
+---
+
 ## mrb_gv_set
 
 ```c
 MRB_API void mrb_gv_set(mrb_state *mrb, mrb_sym sym, mrb_value val);
 ```
 
-グローバル変数を設定する。
+グローバル変数を設定します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|sym|グローバル変数名のシンボル値を渡します。||
+|val|グローバル変数にセットする値を渡します。||
+
+---
 
 ## mrb_gv_remove
 
@@ -5031,7 +6652,16 @@ MRB_API void mrb_gv_set(mrb_state *mrb, mrb_sym sym, mrb_value val);
 MRB_API void mrb_gv_remove(mrb_state *mrb, mrb_sym sym);
 ```
 
-グローバル変数を削除する。
+グローバル変数を削除します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|sym|グローバル変数名のシンボル値を渡します。||
+
+---
 
 ## mrb_cv_get
 
@@ -5039,7 +6669,21 @@ MRB_API void mrb_gv_remove(mrb_state *mrb, mrb_sym sym);
 MRB_API mrb_value mrb_cv_get(mrb_state *mrb, mrb_value mod, mrb_sym sym);
 ```
 
-クラス変数を取得する。
+クラス変数を取得します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|mod|クラス変数を保持しているクラスを渡します。||
+|sym|クラス変数名のシンボル値を渡します。||
+
+### 戻り値
+
+クラス変数の値が返されます。
+
+---
 
 ## mrb_mod_cv_set
 
@@ -5047,7 +6691,18 @@ MRB_API mrb_value mrb_cv_get(mrb_state *mrb, mrb_value mod, mrb_sym sym);
 MRB_API void mrb_mod_cv_set(mrb_state *mrb, struct RClass * c, mrb_sym sym, mrb_value v);
 ```
 
-モジュール変数を設定する。
+モジュール変数を設定します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|c|モジュール変数を保持しているクラスを渡します。||
+|sym|モジュール変数名のシンボル値を渡します。||
+|v|モジュール変数にセットする値を渡します。||
+
+---
 
 ## mrb_cv_set
 
@@ -5055,7 +6710,18 @@ MRB_API void mrb_mod_cv_set(mrb_state *mrb, struct RClass * c, mrb_sym sym, mrb_
 MRB_API void mrb_cv_set(mrb_state *mrb, mrb_value mod, mrb_sym sym, mrb_value v);
 ```
 
-クラス変数を設定する。
+クラス変数を設定します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|c|クラス変数を保持しているクラスを渡します。||
+|sym|クラス変数名のシンボル値を渡します。||
+|v|クラス変数にセットする値を渡します。||
+
+---
 
 ## mrb_cv_defined
 
@@ -5063,7 +6729,21 @@ MRB_API void mrb_cv_set(mrb_state *mrb, mrb_value mod, mrb_sym sym, mrb_value v)
 MRB_API mrb_bool mrb_cv_defined(mrb_state *mrb, mrb_value mod, mrb_sym sym);
 ```
 
-クラス変数が定義されているかどうかをチェックする。
+クラス変数が定義されているかどうかをチェックします。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|mod|クラス変数を保持しているクラスを渡します。||
+|sym|クラス変数名のシンボル値を渡します。||
+
+### 戻り値
+
+クラス変数が定義されていれば `true`、定義されていなければ `false` が返されます。
+
+---
 
 ## mrb_iv_foreach
 
@@ -5071,7 +6751,18 @@ MRB_API mrb_bool mrb_cv_defined(mrb_state *mrb, mrb_value mod, mrb_sym sym);
 MRB_API void mrb_iv_foreach(mrb_state *mrb, mrb_value obj, mrb_iv_foreach_func *func, void *p);
 ```
 
-定義されているインスタンス変数毎に関数を呼び出す。
+定義されているインスタンス変数毎に関数を呼び出します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|obj|インスタンス変数を保持しているオブジェクトを渡します。||
+|func|呼び出す関数を渡します。||
+|p|関数へのパラメータを指定します。||
+
+---
 
 ## mrb_time_at
 
@@ -5079,4 +6770,19 @@ MRB_API void mrb_iv_foreach(mrb_state *mrb, mrb_value obj, mrb_iv_foreach_func *
 MRB_API mrb_value mrb_time_at(mrb_state *mrb, time_t sec, time_t usec, mrb_timezone timezone);
 ```
 
-時刻を設定する。
+時刻を設定します。
+
+### 引数
+
+|引数|概要|備考|
+|:--|:--|:--|
+|mrb|mruby VM情報`mrb_state`のポインタを渡します。||
+|sec|秒単位の現在時刻を渡します。||
+|usec|マイクロ秒単位の現在時刻を渡します。||
+|timezone|時刻のタイムゾーンを `mrb_timezone` で指定します。||
+
+### 戻り値
+
+設定された時刻が `Time` オブジェクトが返されます。
+
+---
