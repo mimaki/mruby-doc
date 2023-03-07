@@ -4,7 +4,7 @@
 
 ## [1.1. mrbgems概要](mrbgems.md)
 
-## [1.2. mruby標準ライブラリ](mruby-2.1.0-libraries.md)
+## [1.2. mruby標準ライブラリ](mruby-core-libraries.md)
 
 ## [1.3. mruby拡張ライブラリ](public-libraries.md)
 
